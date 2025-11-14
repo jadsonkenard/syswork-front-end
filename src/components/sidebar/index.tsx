@@ -16,8 +16,21 @@ export default function Sidebar() {
             isLoading={loading}
           />
         </div>
-        <SidebarOption title="Relatórios" />
-        <SidebarOption title="Relatórios" />
+        <SidebarOption
+          iconName="reports"
+          title="Relatórios"
+          onClick={() => alert("relatório")}
+        />
+        <SidebarOption
+          iconName="management"
+          title="Gerenciamento de unidade"
+          onClick={() => alert("relatório")}
+        />
+        <SidebarOption
+          iconName="user"
+          title="Usuários"
+          onClick={() => alert("relatório")}
+        />
       </aside>
     </div>
   );

@@ -6,7 +6,7 @@
   width: 240px;
   background-color: var(--primary-dark);
   border: none;
-  border-radius: 2px;
+  border-radius: 4px;
   color: var(--primary-contrast-text);
   font-size: 20px;
 }
