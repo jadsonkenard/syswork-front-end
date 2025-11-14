@@ -1,5 +1,5 @@
 .sidebar {
-  width: 240px;
+  width: 340px;
   height: 100vh;
   background-color: var(--neutral-700);
   display: flex;
@@ -13,4 +13,8 @@
   font-size: 20px;
   font-weight: bold;
   color: white;
+  margin-bottom: 20px;
+}
+.box-new-ticket {
+  margin-bottom: 20px;
 }

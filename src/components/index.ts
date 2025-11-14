@@ -1,3 +1,4 @@
 import Layout from "./layout/layout";
+import ButtonNewTicket from "./button-new-ticket";
 
-export { Layout };
+export { Layout, ButtonNewTicket };
