@@ -1,10 +1,31 @@
-.container {
+.layout {
   display: flex;
-  height: 100vh;
+  height: 100vh; /* Sidebar ocupa toda a vertical */
 }
 
+/* --- SIDEBAR --- */
+.layout > div:first-child {
+  z-index: 10; /* Para ficar acima do header se precisar */
+}
+
+/* --- ÁREA DO CONTEÚDO --- */
+.rightArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* HEADER NO TOPO DA ÁREA DIREITA */
+.rightArea > header {
+  height: 60px;
+  flex-shrink: 0;
+}
+
+/* CONTEÚDO OCUPA O RESTANTE */
 .content {
   flex: 1;
   padding: 20px;
   overflow-y: auto;
+  background-color: var(--background-default);
 }

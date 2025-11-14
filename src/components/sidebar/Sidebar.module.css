@@ -1,14 +1,14 @@
 .sidebar {
-  width: 240px; /* largura do menu */
-  height: 100vh; /* ocupa a altura inteira */
-  background-color: var(--neutral-700); /* usa sua paleta */
+  width: 240px;
+  height: 100vh;
+  background-color: var(--neutral-700);
   display: flex;
   flex-direction: column;
   padding: 20px;
   box-sizing: border-box;
+  z-index: 10;
 }
 
-/* Só um placeholder visual */
 .logoArea {
   font-size: 20px;
   font-weight: bold;
