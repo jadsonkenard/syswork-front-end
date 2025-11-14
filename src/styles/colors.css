@@ -1,0 +1,77 @@
+:root {
+  /* ============================
+     CORES PRIMÁRIAS
+  ============================ */
+  --primary-light: #6dda92;
+  --primary-main: #009169;
+  --primary-dark: #2a9a58;
+  --primary-contrast-text: #ffffff;
+
+  /* ============================
+     CORES SECUNDÁRIAS
+  ============================ */
+  --secondary-light: #50c1e9;
+  --secondary-main: #27a3cc;
+  --secondary-dark: #1a7896;
+  --secondary-contrast-text: #ffffff;
+
+  /* ============================
+     INFO
+  ============================ */
+  --info-light: #68b6ff;
+  --info-main: #2a97ff;
+  --info-dark: #0069c0;
+  --info-contrast-text: #ffffff;
+
+  /* ============================
+     SUCESSO
+  ============================ */
+  --success-light: #6dda92;
+  --success-main: #3acb74;
+  --success-dark: #2a9a58;
+  --success-contrast-text: #ffffff;
+
+  /* ============================
+     WARNING
+  ============================ */
+  --warning-light: #ffd666;
+  --warning-main: #ffc533;
+  --warning-dark: #b59124;
+  --warning-contrast-text: #000000;
+
+  /* ============================
+     ERRO
+  ============================ */
+  --error-light: #ff867d;
+  --error-main: #ff5449;
+  --error-dark: #c73a32;
+  --error-contrast-text: #ffffff;
+
+  /* ============================
+     NEUTRAL (tons de cinza)
+  ============================ */
+  --neutral-50:  #fafafa;
+  --neutral-100: #f1f3f5;
+  --neutral-200: #e5e7eb;
+  --neutral-300: #d1d5db;
+  --neutral-400: #9ca3af;
+  --neutral-500: #6b7280;
+  --neutral-600: #4b5563;
+  --neutral-700: #374151;
+  --neutral-800: #1f2937;
+  --neutral-900: #111827;
+
+  /* ============================
+     BACKGROUND
+  ============================ */
+  --background-default: #f7f9fc;
+  --background-paper: #ffffff;
+
+  /* ============================
+     TEXTO
+  ============================ */
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-disabled: #9ca3af;
+  --text-inverse: #ffffff;
+}

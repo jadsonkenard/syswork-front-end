@@ -1,0 +1,16 @@
+.sidebar {
+  width: 240px; /* largura do menu */
+  height: 100vh; /* ocupa a altura inteira */
+  background-color: var(--neutral-700); /* usa sua paleta */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Só um placeholder visual */
+.logoArea {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}

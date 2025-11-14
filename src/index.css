@@ -12,7 +12,7 @@ body {
 }
 
 :root {
-  --bg: #39e20e;
+  --bg: var(--neutral-200);
 }
 
 button {
