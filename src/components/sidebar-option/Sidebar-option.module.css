@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.title {
+  color: var(--primary-contrast-text);
+  margin: 0 10px;
+  font-weight: 600;
+}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ButtonNewTicket from "../button-new-ticket";
-import { Clipboard } from "lucide-react";
+import SidebarOption from "../sidebar-option";
 import styles from "./Sidebar.module.css";
 
 export default function Sidebar() {
@@ -16,11 +16,8 @@ export default function Sidebar() {
             isLoading={loading}
           />
         </div>
-        <Clipboard size={20} />
-        <p>Opção 1</p>
-        <p>Opção 1</p>
-        <p>Opção 1</p>
-        <p>Opção 1</p>
+        <SidebarOption title="Relatórios" />
+        <SidebarOption title="Relatórios" />
       </aside>
     </div>
   );
