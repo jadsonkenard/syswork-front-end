@@ -5,7 +5,7 @@
   align-items: center;
 }
 .form {
-  background-color: var( --primary-contrast-text);
+  background-color: var(--primary-contrast-text);
   padding: 30px;
   border-radius: 10px;
   width: 50%;
@@ -24,17 +24,8 @@
   flex-direction: column;
   gap: 5px;
 }
-.button {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #2a9a58;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-  border-radius: 6px;
-}
+
 .error {
-  color: red;
+  color: var(--error-dark);
   font-size: 13px;
-  margin-top: -8px;
 }

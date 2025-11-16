@@ -21,11 +21,15 @@ export default function Login() {
     console.log("Dados enviados:", data);
   }
 
+  function teste() {
+    console.log("clicou");
+    setLoading(!loading);
+  }
+
   return (
     <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <h2 className={styles.title}>Login</h2>
-
         {/* Username */}
         <div className={styles.field}>
           <Input
@@ -51,15 +55,11 @@ export default function Login() {
         </div>
         <Button
           title="Entrar"
-          onClick={() => setLoading(!loading)}
+          onClick={() => teste()}
           isLoading={loading}
           height="55px"
           width="450px"
         />
-
-        {/* <button type="submit" className={styles.button}>
-          Entrar
-        </button> */}
       </form>
     </div>
   );
