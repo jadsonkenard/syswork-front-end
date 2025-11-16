@@ -21,7 +21,7 @@ export default function Button({
   return (
     <button
       className={styles.container}
-      disabled={disabled || isLoading}
+      disabled={disabled}
       onClick={onClick}
       style={{
         ["--btn-width" as string]: width,

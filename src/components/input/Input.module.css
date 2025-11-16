@@ -7,6 +7,14 @@
   background-color: var(--neutral-300);
   padding: 0 10px;
   border-radius: 4px;
+  border: 1px solid var(--primary-dark);
+
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.container:focus-within {
+  border-color: var(--primary-dark);
 }
 
 .input {
@@ -16,6 +24,8 @@
   border: none;
   background-color: var(--neutral-300);
   font-size: 18px;
+  border: 1;
+  border-color: blue;
 }
 .input:focus {
   outline: none;

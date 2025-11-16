@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <div className={styles.container}>
       <div className={styles["box-content"]}>
-        <DynamicIcon name="userCheck" color="#2a9a58" size={22} />
+        <DynamicIcon iconName="userCheck" color="var(--primary-dark)" size={22} />
         <h3 className={styles.username}>{userLogged ? userLogged : "Login"}</h3>
       </div>
     </div>
