@@ -1,21 +1,24 @@
 import styles from "./Input.module.css";
 import { DynamicIcon } from "../dynamic-icon/DynamicIcon";
 
-type InputProps = {
-  name: string;
+type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   iconName: string;
   placeholder: string;
 };
 
 export default function Input({
-  name,
   iconName,
   placeholder,
+  ...rest
 }: InputProps) {
   return (
     <div className={styles.container}>
       <DynamicIcon name={iconName} color="#2a9a58" size={25} />
-      <input name={name} placeholder={placeholder} className={styles.input}/>
+      <input
+        placeholder={placeholder}
+        className={styles.input}
+        {...rest}
+      />
     </div>
   );
 }
