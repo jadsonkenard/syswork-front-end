@@ -10,7 +10,7 @@ type SidebarOptionProps = {
 export default function SidebarOption({ iconName, title, onClick }: SidebarOptionProps) {
   return (
     <div className={styles.container} onClick={onClick}>
-      <DynamicIcon name={iconName} size={30} color="#FFF"/>
+      <DynamicIcon iconName={iconName} size={30} color="#FFF"/>
       <p className={styles.title}>{title}</p>
     </div>
   );

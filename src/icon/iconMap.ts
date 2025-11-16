@@ -5,4 +5,5 @@ export const iconMap: Record<string, Icons.LucideIcon> = {
   management: Icons.LaptopMinimalCheck,
   user: Icons.UserRoundCog,
   userCheck: Icons.UserCheck,
+  lock: Icons.KeyRound,
 };

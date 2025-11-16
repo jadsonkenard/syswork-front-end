@@ -1,13 +1,17 @@
 import { iconMap } from "../../icon/iconMap";
 
 interface DynamicIconProps {
-  name: string;
+  iconName: string;
   size?: number;
   color?: string;
 }
 
-export function DynamicIcon({ name, size = 24, color = "currentColor" }: DynamicIconProps) {
-  const IconComponent = iconMap[name];
+export function DynamicIcon({
+  iconName,
+  size = 24,
+  color = "currentColor",
+}: DynamicIconProps) {
+  const IconComponent = iconMap[iconName];
 
   if (!IconComponent) return null;
 

@@ -1,9 +1,10 @@
 .container {
+  width: var(--btn-width, 160px);
+  height: var(--btn-height, 40px);
+
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 55px;
-  width: 240px;
   background-color: var(--primary-dark);
   border: none;
   border-radius: 4px;

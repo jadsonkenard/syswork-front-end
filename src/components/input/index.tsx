@@ -13,7 +13,7 @@ export default function Input({
 }: InputProps) {
   return (
     <div className={styles.container}>
-      <DynamicIcon name={iconName} color="#2a9a58" size={25} />
+      <DynamicIcon iconName={iconName} color="#2a9a58" size={25} />
       <input
         placeholder={placeholder}
         className={styles.input}
