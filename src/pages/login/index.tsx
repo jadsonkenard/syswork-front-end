@@ -1,52 +1,24 @@
-import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { Button, Input } from "../../components";
 import styles from "./Login.module.css";
-import { useState } from "react";
-
-type LoginFormData = {
-  username: string;
-  password: string;
-};
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormData>();
-
-  function onSubmit(data: LoginFormData) {
-    console.log("Dados enviados:", data);
+  function handleSubmit() {
+    alert("Formulario enviado.");
   }
-
   return (
     <div className={styles.container}>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <h2 className={styles.title}>Login</h2>
         {/* Username */}
         <div className={styles.field}>
-          <Input
-            iconName="user"
-            placeholder="Nome de usuário"
-            {...register("username", { required: "O usuário é obrigatório" })}
-          />
-          {errors.username && (
-            <span className={styles.error}>{errors.username.message}</span>
-          )}
+          <Input iconName="user" placeholder="Nome de usuário" />
         </div>
 
         {/* Password */}
         <div className={styles.field}>
-          <Input
-            iconName="lock"
-            placeholder="Senha"
-            {...register("password", { required: "A senha é obrigatória" })}
-          />
-          {errors.password && (
-            <span className={styles.error}>{errors.password.message}</span>
-          )}
+          <Input iconName="lock" placeholder="Senha" />
         </div>
         <Button
           title="Entrar"
