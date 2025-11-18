@@ -4,20 +4,20 @@ import { Home, Notfound, Login } from "../pages";
 
 export const router = createBrowserRouter([
   {
+    element: <Login />,
+    path: "/login",
+  },
+  {
     element: <Layout />,
     children: [
-      {
-        element: <Login />,
-        path: "/login",
-      },
       {
         element: <Home />,
         path: "/",
       },
-      {
-        element: <Notfound />,
-        path: "*",
-      },
     ],
+  },
+  {
+    element: <Notfound />,
+    path: "*",
   },
 ]);

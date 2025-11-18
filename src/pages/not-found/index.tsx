@@ -1,7 +1,8 @@
 export default function Notfound() {
   return (
     <div>
-      <h1>Página não encontrada.</h1>
+      <h3>syswork diz:</h3>
+      <h1>Error. 404 NotFound. Página não encontrada.</h1>
     </div>
   );
 }
