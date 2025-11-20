@@ -8,6 +8,7 @@ type ButtonProps = {
   onClick: () => void;
   width?: string;
   height?: string;
+  type?: "button" | "submit" | "reset";
 };
 
 export default function Button({
@@ -17,12 +18,14 @@ export default function Button({
   onClick,
   width,
   height,
+  type = "button"
 }: ButtonProps) {
   return (
     <button
       className={styles.container}
       disabled={disabled}
       onClick={onClick}
+      type={type}
       style={{
         ["--btn-width" as string]: width,
         ["--btn-height" as string]: height,
