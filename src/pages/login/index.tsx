@@ -1,24 +1,65 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { Button, Input } from "../../components";
 import styles from "./Login.module.css";
+import { AuthService } from "../../services/AuthService";
 
-// type UserLoginData = {
-//   username: string;
-//   password: string;
-// };
+type LoginForm = {
+  username: string;
+  password: string;
+};
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [form, setForm] = useState<LoginForm>({
+    username: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState<string>("");
 
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    alert("Teste");
-    console.log(username, password);
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    setErrors("");
   }
-  
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!form.username.trim()) {
+      setErrors("Usuário é obrigatório");
+      return;
+    }
+
+    if (!form.password.trim()) {
+      setErrors("Senha é obrigatória");
+      return;
+    }
+    console.log(form.username, form.password);
+    login();
+  }
+
+  async function login() {
+    setLoading(true);
+    try {
+      const result = await AuthService.login({
+        username: form.username,
+        password: form.password,
+      });
+
+      console.log("Login realizado:", result);
+      setLoading(false);
+    } catch (error: any) {
+      setErrors(error.message || "Erro inesperado");
+      setLoading(false);
+    }
+    setLoading(false);
+  }
+
   return (
     <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -26,30 +67,33 @@ export default function Login() {
         {/* Username */}
         <div className={styles.field}>
           <Input
+            name="username"
             iconName="user"
             placeholder="Nome de usuário"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={form.username}
+            onChange={handleChange}
           />
         </div>
 
         {/* Password */}
         <div className={styles.field}>
           <Input
+            name="password"
+            type="password"
             iconName="lock"
             placeholder="Senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={form.password}
+            onChange={handleChange}
           />
         </div>
         <Button
           title="Entrar"
-          onClick={() => setLoading(!loading)}
           isLoading={loading}
           height="55px"
           width="450px"
           type="submit"
         />
+        <p className={styles.error}>{errors}</p>
       </form>
     </div>
   );

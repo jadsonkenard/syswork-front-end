@@ -5,7 +5,7 @@ type ButtonProps = {
   title: string;
   disabled?: boolean;
   isLoading: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   width?: string;
   height?: string;
   type?: "button" | "submit" | "reset";
