@@ -1,0 +1,60 @@
+import { DynamicIcon } from "../../components";
+import styles from "./Reports.module.css";
+
+export default function Reports() {
+  return (
+    <div className={styles.container}>
+      <h1>Relatorios</h1>
+      <section className={styles["box-options"]}>
+        <div className={styles["box-item"]}>
+          <DynamicIcon
+            iconName="report1"
+            color="var(--neutral-500)"
+            size={80}
+          />
+          <p className={styles['box-text']}>Buscar todos os chamados</p>
+        </div>
+        <div className={styles["box-item"]}>
+          <DynamicIcon
+            iconName="report2"
+            color="var(--neutral-500)"
+            size={80}
+          />
+          <p className={styles['box-text']}>Buscar chamados por ID do chamado</p>
+        </div>
+        <div className={styles["box-item"]}>
+          <DynamicIcon
+            iconName="report3"
+            color="var(--neutral-500)"
+            size={80}
+          />
+          <p className={styles['box-text']}>Buscar chamados por ID do usuário</p>
+        </div>
+        <div className={styles["box-item"]}>
+          <DynamicIcon
+            iconName="report4"
+            color="var(--neutral-500)"
+            size={80}
+          />
+          <p className={styles['box-text']}>Meus chamados</p>
+        </div>
+        <div className={styles["box-item"]}>
+          <DynamicIcon
+            iconName="report5"
+            color="var(--neutral-500)"
+            size={80}
+          />
+          <p className={styles['box-text']}>Buscar chamados por setor solicitante</p>
+        </div>
+        <div className={styles["box-item"]}>
+          <DynamicIcon
+            iconName="report6"
+            color="var(--neutral-500)"
+            size={80}
+          />
+          <p className={styles['box-text']}>Buscar chamados por setor executante</p>
+        </div>
+      </section>
+    </div>
+  );
+}

@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.box-options {
+  display: flex;
+  gap: 50px;
+}
+
+.box-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box-text {
+  text-align: center;
+  hyphens: auto; 
+}

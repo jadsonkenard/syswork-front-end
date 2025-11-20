@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Button } from "../index";
 import SidebarOption from "../sidebar-option";
 import styles from "./Sidebar.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   return (
     <div>
       <aside className={styles.sidebar}>
@@ -21,7 +23,7 @@ export default function Sidebar() {
         <SidebarOption
           iconName="reports"
           title="Relatórios"
-          onClick={() => alert("relatório")}
+          onClick={() => navigate("/reports")}
         />
         <SidebarOption
           iconName="management"
