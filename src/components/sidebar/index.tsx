@@ -28,12 +28,12 @@ export default function Sidebar() {
         <SidebarOption
           iconName="management"
           title="Gerenciamento de unidade"
-          onClick={() => alert("relatório")}
+          onClick={() => navigate("/management")}
         />
         <SidebarOption
           iconName="user"
           title="Usuários"
-          onClick={() => alert("relatório")}
+          onClick={() => navigate("/user-management")}
         />
       </aside>
     </div>
