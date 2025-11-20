@@ -2,6 +2,11 @@ body {
   margin: 0;
 }
 
+.title {
+  color: var(--neutral-500);
+  margin: 0 0 20px 0;
+}
+
 .container {
   width: 100%;
   padding: 20px;
@@ -10,16 +15,35 @@ body {
 
 .box-options {
   display: flex;
-  gap: 50px;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .box-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px;
+
+  transition: background-color 0.5s ease, transform 0.3s ease-out,
+    box-shadow 0.5s ease;
+
+  width: 200px;
+  height: 120px;
+
+  /* A chave para manter o tamanho fixo e gerenciar o excesso */
+  overflow: auto;
+  border-radius: 2px;
+}
+
+.box-item:hover {
+  background-color: var(--neutral-200);
+  /* Mover ligeiramente para cima e aumentar um pouco */
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
 .box-text {
   text-align: center;
-  hyphens: auto; 
+  hyphens: auto;
 }

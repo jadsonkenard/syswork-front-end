@@ -4,7 +4,7 @@ import styles from "./Reports.module.css";
 export default function Reports() {
   return (
     <div className={styles.container}>
-      <h1>Relatorios</h1>
+      <h2 className={styles.title}>Relatorios</h2>
       <section className={styles["box-options"]}>
         <div className={styles["box-item"]}>
           <DynamicIcon
