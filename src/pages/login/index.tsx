@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { Button, Input } from "../../components";
 import styles from "./Login.module.css";
-import { AuthService } from "../../services/AuthService";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 type LoginForm = {
   username: string;
@@ -16,6 +17,9 @@ export default function Login() {
     password: "",
   });
   const [errors, setErrors] = useState<string>("");
+
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -40,19 +44,16 @@ export default function Login() {
       return;
     }
     console.log(form.username, form.password);
-    login();
+    handleLogin();
   }
 
-  async function login() {
+  async function handleLogin() {
     setLoading(true);
     try {
-      const result = await AuthService.login({
-        username: form.username,
-        password: form.password,
-      });
+      await login(form.username, form.password);
 
-      console.log("Login realizado:", result);
       setLoading(false);
+      navigate("/");
     } catch (error: any) {
       setErrors(error.message || "Erro inesperado");
       setLoading(false);

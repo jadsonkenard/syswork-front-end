@@ -14,6 +14,9 @@ export interface ApiError {
 }
 
 export class AuthService {
+  static me(_toredToken: string) {
+      throw new Error("Method not implemented.");
+  }
   // salva tokens
   private static saveTokens(accessToken: string, refreshToken: string) {
     localStorage.setItem("accessToken", accessToken);

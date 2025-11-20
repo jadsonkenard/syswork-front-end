@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "./../components";
 import { Home, Notfound, Login } from "../pages";
+import { PrivateRoute } from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -8,11 +9,16 @@ export const router = createBrowserRouter([
     path: "/login",
   },
   {
-    element: <Layout />,
+    element: <PrivateRoute />,
     children: [
       {
-        element: <Home />,
-        path: "/",
+        element: <Layout />,
+        children: [
+          {
+            element: <Home />,
+            path: "/",
+          },
+        ],
       },
     ],
   },
