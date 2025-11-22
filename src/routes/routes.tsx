@@ -1,6 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "./../components";
-import { Home, Notfound, Login, Reports, Management, UserManagement } from "../pages";
+import {
+  Home,
+  Notfound,
+  Login,
+  Reports,
+  Management,
+  UserManagement,
+  ReportDetails,
+} from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 
@@ -35,6 +43,10 @@ export const router = createBrowserRouter([
           {
             element: <UserManagement />,
             path: "/user-management",
+          },
+          {
+            element: <ReportDetails />,
+            path: "/ticket/:mode",
           },
         ],
       },

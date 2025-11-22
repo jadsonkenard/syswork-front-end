@@ -1,4 +1,4 @@
-export const data = [
+export const ticketsMock = [
     {
         "id": 1,
         "title": "Teste de Chamado #1",
