@@ -22,12 +22,15 @@ export function ReportDetails() {
   useEffect(() => {
     async function load() {
       if (!accessToken) return;
+      if (!mode) {
+        return <div>Relatório inválido</div>;
+      }
+
       setLoading(true);
       try {
         const response = await getTickets(accessToken, mode);
         console.log(response);
-        console.log(mode);
-        setData(response);
+        setData(Array.isArray(response) ? response : [response]);
       } catch (error) {
         if (typeof error === "string") {
           console.log(error);
@@ -38,7 +41,7 @@ export function ReportDetails() {
       setLoading(false);
     }
     load();
-  }, [mode]);
+  }, [accessToken, mode]);
 
   if (loading) return <p>Carregando...</p>;
 

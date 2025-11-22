@@ -1,11 +1,13 @@
 import { BASE_URL } from "../config/api";
 
-export async function getTickets(
-  token: string,
-  mode: string | number | undefined
-) {
+export async function getTickets(token: string, mode: string | undefined) {
+  const isNumber = /^\d+$/.test(mode ?? "");
+
+  const url = isNumber
+    ? `${BASE_URL}ticket/${mode}` // ID específico
+    : `${BASE_URL}ticket/${mode}`;
   try {
-    const response = await fetch(`${BASE_URL}ticket/${mode}`, {
+    const response = await fetch(`${url}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",

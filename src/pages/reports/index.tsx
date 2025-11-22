@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { DynamicIcon } from "../../components";
 import styles from "./Reports.module.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Reports() {
   const navigate = useNavigate();
+  const [id, setId] = useState(1);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Relatorios</h2>
@@ -32,7 +34,7 @@ export default function Reports() {
         </div>
         <div
           className={styles["box-item"]}
-          onClick={() => navigate("/ticket/1")}
+          onClick={() => navigate(`/ticket/${id}`)}
         >
           <DynamicIcon
             iconName="report3"
