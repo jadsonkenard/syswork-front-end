@@ -14,21 +14,21 @@ type ReportItem = {
 };
 
 export function ReportDetails() {
-  const { accessToken } = useAuth();
+  // const { accessToken } = useAuth(); PRECISA DO TOKEN PARA ACESSAR RELATORIOS
   const { mode } = useParams();
   const [data, setData] = useState<ReportItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function load() {
-      if (!accessToken) return;
+      // if (!accessToken) return;
       if (!mode) {
         return <div>Relatório inválido</div>;
       }
 
       setLoading(true);
       try {
-        const response = await getTickets(accessToken, mode);
+        const response = await getTickets("accessToken", mode);
         console.log(response);
         setData(Array.isArray(response) ? response : [response]);
       } catch (error) {
@@ -41,7 +41,7 @@ export function ReportDetails() {
       setLoading(false);
     }
     load();
-  }, [accessToken, mode]);
+  }, [mode]);
 
   if (loading) return <p>Carregando...</p>;
 
