@@ -1,17 +1,18 @@
 import { BASE_URL } from "../config/api";
+import { apiFetch } from "./apiFetch";
 
-export async function getTickets(token: string, mode: string | undefined) {
+export async function getTickets(mode: string | undefined) {
   const isNumber = /^\d+$/.test(mode ?? "");
 
   const url = isNumber
-    ? `${BASE_URL}ticket/${mode}` // ID específico
-    : `${BASE_URL}ticket/${mode}`;
+    ? `${BASE_URL}/ticket/${mode}` // ID específico
+    : `${BASE_URL}/ticket/${mode}`;
   try {
-    const response = await fetch(`${url}`, {
+    const response = await apiFetch(`${url}`, {
       headers: {
-        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
+      credentials: "include",
     });
 
     if (!response.ok) {

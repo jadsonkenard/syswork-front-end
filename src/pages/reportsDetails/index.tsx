@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getTickets } from "../../services/ReportService";
-import { useAuth } from "../../hooks/useAuth";
 
 type ReportItem = {
   id: number;
@@ -28,7 +27,7 @@ export function ReportDetails() {
 
       setLoading(true);
       try {
-        const response = await getTickets("accessToken", mode);
+        const response = await getTickets(mode);
         console.log(response);
         setData(Array.isArray(response) ? response : [response]);
       } catch (error) {
