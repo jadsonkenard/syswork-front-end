@@ -3,5 +3,6 @@ export interface User {
   username: string;
   email: string;
   role: string;
-  status: string
+  status: string;
+  full_name: string;
 }
