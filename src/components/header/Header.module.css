@@ -13,7 +13,18 @@
   margin-right: 20px;
 }
 
-
 .username {
   margin: 0 8px;
+}
+
+.button-logout {
+  color: #000;
+  padding: 0 12px;
+  font-size: 18px;
+  border: none;
+}
+
+.button-logout:hover {
+  background-color: var(--primary-dark);
+  color: var(--neutral-200);
 }

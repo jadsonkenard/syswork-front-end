@@ -1,157 +1,61 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { BASE_URL } from "../api/base_url";
+import { BASE_URL } from "../config/api";
+import type { User } from "../types/User";
+import { apiFetch } from "./apiFetch";
 
-export interface LoginPayload {
-  username: string;
-  password: string;
+export interface LoginResponse {
+  user: User;
 }
 
-export interface ApiError {
-  status: number;
-  message: string;
-  details?: any;
-}
+export function AuthService() {
+  async function login(username: string, password: string): Promise<User> {
+    const response = await apiFetch(`${BASE_URL}/api/auth/login`, {
+      method: "POST",
+      credentials: "include", // envia e recebe cookies
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
 
-export class AuthService {
-  static me(_toredToken: string) {
-      throw new Error("Method not implemented.");
-  }
-  // salva tokens
-  private static saveTokens(accessToken: string, refreshToken: string) {
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
-  }
-
-  // pega tokens
-  static getAccessToken() {
-    return localStorage.getItem("accessToken");
-  }
-
-  static getRefreshToken() {
-    return localStorage.getItem("refreshToken");
-  }
-
-  // remove tokens
-  static clearTokens() {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-  }
-
-  // --------------------------
-  // LOGIN
-  // --------------------------
-  static async login(payload: LoginPayload) {
-    try {
-      const res = await fetch(`${BASE_URL}/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) {
-        const errorData = await res.json().catch(() => null);
-        throw {
-          status: res.status,
-          message: errorData?.message || "Erro ao realizar login",
-          details: errorData,
-        } as ApiError;
-      }
-
-      const data = await res.json();
-
-      this.saveTokens(data.accessToken, data.refreshToken);
-
-      return data;
-    } catch (err: any) {
-      throw this.formatError(err);
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || "Erro ao fazer login");
     }
+
+    const data: LoginResponse = await response.json();
+    return data.user;
   }
 
-  // --------------------------
-  // REFRESH TOKEN
-  // --------------------------
-  static async refreshToken() {
-    try {
-      const refresh = this.getRefreshToken();
-      if (!refresh)
-        throw { status: 401, message: "Nenhum refresh token encontrado" };
-
-      const res = await fetch(`${BASE_URL}/refresh`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ refreshToken: refresh }),
-      });
-
-      if (!res.ok) {
-        const errorData = await res.json().catch(() => null);
-        throw {
-          status: res.status,
-          message: errorData?.message || "Erro ao renovar token",
-          details: errorData,
-        } as ApiError;
-      }
-
-      const data = await res.json();
-
-      this.saveTokens(data.accessToken, data.refreshToken);
-
-      return data;
-    } catch (err: any) {
-      throw this.formatError(err);
-    }
+  async function logout(): Promise<void> {
+    await apiFetch(`${BASE_URL}/api/auth/logout`, {
+      method: "POST",
+      credentials: "include",
+    });
   }
 
-  // --------------------------
-  // VERIFICAR USUÁRIO (/me)
-  // --------------------------
-  static async getMe(): Promise<any> {
-    try {
-      const token = this.getAccessToken();
-      if (!token) throw { status: 401, message: "Não autenticado" };
-
-      const res = await fetch(`${BASE_URL}/me`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!res.ok) {
-        const errorData = await res.json().catch(() => null);
-
-        // Se deu 401, tenta usar refresh token automaticamente
-        if (res.status === 401) {
-          try {
-            await this.refreshToken();
-            return await this.getMe(); // chama de novo
-          } catch (refreshError) {
-            this.clearTokens();
-            throw { status: 401, message: "Sessão expirada" };
-          }
-        }
-
-        throw {
-          status: res.status,
-          message: errorData?.message || "Erro ao obter usuário",
-          details: errorData,
-        } as ApiError;
-      }
-
-      return await res.json();
-    } catch (err: any) {
-      throw this.formatError(err);
-    }
+  async function refresh(): Promise<void> {
+    await apiFetch(`${BASE_URL}/api/auth/refresh`, {
+      method: "POST",
+      credentials: "include",
+    });
   }
 
-  // --------------------------
-  // FORMATA ERRO
-  // --------------------------
-  private static formatError(err: any): ApiError {
-    return {
-      status: err?.status || 500,
-      message: err?.message || "Erro inesperado",
-      details: err?.details || null,
-    };
+  async function getProfile(): Promise<User | null> {
+    const response = await apiFetch(`${BASE_URL}/api/auth/me`, {
+      method: "GET",
+      credentials: "include",
+    });
+
+    if (!response.ok) return null;
+
+    const data: { user: User } = await response.json();
+    return data.user;
   }
+
+  return {
+    login,
+    logout,
+    refresh,
+    getProfile,
+  };
 }

@@ -2,8 +2,9 @@
 import { useState } from "react";
 import { Button, Input } from "../../components";
 import styles from "./Login.module.css";
-import { useNavigate } from "react-router-dom";
+import { AuthService } from "../../services/AuthService";
 import { useAuth } from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 type LoginForm = {
   username: string;
@@ -18,8 +19,9 @@ export default function Login() {
   });
   const [errors, setErrors] = useState<string>("");
 
+  const authService = AuthService();
+  const { setUser } = useAuth();
   const navigate = useNavigate();
-  const { login } = useAuth();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -34,30 +36,35 @@ export default function Login() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setLoading(true);
     if (!form.username.trim()) {
-      setErrors("Usuário é obrigatório");
+      setErrors("Nome de usuário é obrigatório");
+      setLoading(false);
       return;
     }
 
     if (!form.password.trim()) {
       setErrors("Senha é obrigatória");
+      setLoading(false);
       return;
     }
     console.log(form.username, form.password);
     handleLogin();
+    setLoading(true);
   }
 
   async function handleLogin() {
-    setLoading(true);
+    //>>>>>>>>>>>>>>SAIDA PARA API<<<<<<<<<<<<<<<<
     try {
-      await login(form.username, form.password);
+      const user = await authService.login(form.username, form.password);
 
-      setLoading(false);
+      setUser(user);
       navigate("/");
     } catch (error: any) {
       setErrors(error.message || "Erro inesperado");
       setLoading(false);
     }
+    console.log(form.username, form.password);
     setLoading(false);
   }
 
@@ -93,6 +100,8 @@ export default function Login() {
           height="55px"
           width="450px"
           type="submit"
+          onClick={() => console.log("Clicou.")}
+          disabled={loading ? true : false}
         />
         <p className={styles.error}>{errors}</p>
       </form>
