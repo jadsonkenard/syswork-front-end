@@ -16,8 +16,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       .finally(() => setLoading(false));
   }, []);
 
+  async function logout() {
+    try {
+      await authService.logout(); // 🔥 chama o back-end
+      setUser(null); // 🔥 limpa estado local
+    } catch (e) {
+      console.error("Erro ao fazer logout", e);
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ user, setUser, isLoading }}>
+    <AuthContext.Provider value={{ user, setUser, isLoading, logout }}>
       {children}
     </AuthContext.Provider>
   );

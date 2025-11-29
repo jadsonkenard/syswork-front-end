@@ -8,7 +8,7 @@ export interface LoginResponse {
 
 export function AuthService() {
   async function login(username: string, password: string): Promise<User> {
-    const response = await apiFetch(`${BASE_URL}/auth/login`, {
+    const response = await apiFetch(`${BASE_URL}/api/auth/login`, {
       method: "POST",
       credentials: "include", // envia e recebe cookies
       headers: {
@@ -27,21 +27,21 @@ export function AuthService() {
   }
 
   async function logout(): Promise<void> {
-    await apiFetch(`${BASE_URL}/auth/logout`, {
+    await apiFetch(`${BASE_URL}/api/auth/logout`, {
       method: "POST",
       credentials: "include",
     });
   }
 
   async function refresh(): Promise<void> {
-    await apiFetch(`${BASE_URL}/auth/refresh`, {
+    await apiFetch(`${BASE_URL}/api/auth/refresh`, {
       method: "POST",
       credentials: "include",
     });
   }
 
   async function getProfile(): Promise<User | null> {
-    const response = await apiFetch(`${BASE_URL}/auth/me`, {
+    const response = await apiFetch(`${BASE_URL}/api/auth/me`, {
       method: "GET",
       credentials: "include",
     });

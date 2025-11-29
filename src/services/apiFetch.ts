@@ -9,22 +9,17 @@ export async function apiFetch(url: string, options: RequestInit = {}) {
 
   // 2 - Se não for 401 → retorna
   if (response.status !== 401) return response;
-  console.log(">>>>PASSOU AQUI 1<<<<<<")
 
   // 3 - Se for 401 → tenta refresh
-  const refresh = await fetch(`${BASE_URL}/auth/refresh`, {
+  const refresh = await fetch(`${BASE_URL}/api/auth/refresh`, {
     method: "POST",
     credentials: "include",
   });
-  console.log(">>>>PASSOU AQUI 2<<<<<<")
 
   if (!refresh.ok) {
     // refresh falhou → usuário realmente não está logado
     return response;
   }
-
-  const data = await refresh.json();
-  const newAccessToken = data.accessToken;
 
   // 4 - Repetir requisição original com novo token
   return fetch(url, {
@@ -32,7 +27,6 @@ export async function apiFetch(url: string, options: RequestInit = {}) {
     credentials: "include",
     headers: {
       ...options.headers,
-      Authorization: `Bearer ${newAccessToken}`,
     },
   });
 }

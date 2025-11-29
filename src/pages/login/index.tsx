@@ -36,17 +36,21 @@ export default function Login() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setLoading(true);
     if (!form.username.trim()) {
-      setErrors("Usuário é obrigatório");
+      setErrors("Nome de usuário é obrigatório");
+      setLoading(false);
       return;
     }
 
     if (!form.password.trim()) {
       setErrors("Senha é obrigatória");
+      setLoading(false);
       return;
     }
     console.log(form.username, form.password);
     handleLogin();
+    setLoading(true);
   }
 
   async function handleLogin() {
@@ -61,6 +65,7 @@ export default function Login() {
       setLoading(false);
     }
     console.log(form.username, form.password);
+    setLoading(false);
   }
 
   return (
