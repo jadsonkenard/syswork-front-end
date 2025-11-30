@@ -12,4 +12,5 @@ export const iconMap: Record<string, Icons.LucideIcon> = {
   report4: Icons.BookAudio,
   report5: Icons.BookText,
   report6: Icons.BookA,
+  home: Icons.House,
 };

@@ -28,6 +28,11 @@ export default function Sidebar() {
           />
         </div>
         <SidebarOption
+          iconName="home"
+          title="Home"
+          onClick={() => navigate("/")}
+        />
+        <SidebarOption
           iconName="reports"
           title="Relatórios"
           onClick={() => navigate("/reports")}

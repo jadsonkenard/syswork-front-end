@@ -18,8 +18,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   async function logout() {
     try {
-      await authService.logout(); // 🔥 chama o back-end
-      setUser(null); // 🔥 limpa estado local
+      await authService.logout();
+      setUser(null);
     } catch (e) {
       console.error("Erro ao fazer logout", e);
     }
