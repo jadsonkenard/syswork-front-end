@@ -1,11 +1,13 @@
+type TicketStatus = "open" | "in progress" | "done";
+
 export type ReportItem = {
   id: number;
   title: string;
   description: string;
-  status: string;
+  status: TicketStatus;
   requester_department_id: number;
   executor_department_id: number;
   requester_user_id: number;
   createdAt: string;
-  updatedAt: string
+  updatedAt: string;
 };

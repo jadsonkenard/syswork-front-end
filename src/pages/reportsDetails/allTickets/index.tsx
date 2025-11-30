@@ -1,15 +1,24 @@
 import { useEffect, useState } from "react";
 import type { ReportItem } from "../../../types/ReportProps";
 import { getTicketsAll } from "../../../services/ReportService";
+import styles from "./AllTickets.module.css";
+import { Button } from "../../../components";
 
 export default function AllTickets() {
-  const [data, setData] = useState<ReportItem[]>([]);
+  const [tickets, setTickets] = useState<ReportItem[]>([]);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(20);
+  const [totalPages, setTotalPages] = useState(1);
+
   useEffect(() => {
     async function load() {
       try {
-        const response = await getTicketsAll();
+        const response = await getTicketsAll(page, limit);
         console.log(response);
-        setData(response.data);
+        console.log(response.limit);
+        setTickets(response.data);
+        setLimit(response.limit);
+        setTotalPages(response.totalPages);
         // setData(Array.isArray(response) ? response : [response]);
       } catch (error) {
         if (typeof error === "string") {
@@ -20,11 +29,23 @@ export default function AllTickets() {
       }
     }
     load();
-  }, []);
+  }, [page, limit]);
+
+  const statusLabels = {
+    open: "Aberto",
+    "in progress": "Em andamento",
+    done: "Concluído",
+  };
+
   return (
-    <div>
+    <div className={styles.container}>
       <h3>Todos os chamados</h3>
-      <table border={1} cellpadding="8" cellspacing="0">
+      <table
+        border={1}
+        cellPadding="8"
+        cellSpacing="0"
+        className={styles["tickets-table"]}
+      >
         <thead>
           <tr>
             <th>ID</th>
@@ -40,12 +61,23 @@ export default function AllTickets() {
         </thead>
 
         <tbody>
-          {data.map((item) => (
+          {tickets.map((item) => (
             <tr key={item.id}>
               <td>{item.id}</td>
               <td>{item.title}</td>
               <td>{item.description}</td>
-              <td>{item.status}</td>
+              <td
+                style={{
+                  backgroundColor:
+                    item.status === "open"
+                      ? "var(--error-dark)"
+                      : item.status === "in progress"
+                      ? "var(--info-dark)"
+                      : "var(--primary-dark)",
+                }}
+              >
+                {statusLabels[item.status]}
+              </td>
               <td>{item.requester_user_id}</td>
               <td>{item.requester_department_id}</td>
               <td>{item.executor_department_id}</td>
@@ -55,6 +87,24 @@ export default function AllTickets() {
           ))}
         </tbody>
       </table>
+      <div className={styles.buttons}>
+        <Button
+          title="Anterior"
+          isLoading={false}
+          disabled={page === 1}
+          height="30px"
+          width="100px"
+          onClick={() => setPage(page - 1)}
+        />
+        <Button
+          title="Próxima"
+          isLoading={false}
+          disabled={page === totalPages}
+          height="30px"
+          width="100px"
+          onClick={() => setPage(page + 1)}
+        />
+      </div>
     </div>
   );
 }

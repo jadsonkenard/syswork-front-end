@@ -1,9 +1,9 @@
 import { BASE_URL } from "../config/api";
 import { apiFetch } from "./apiFetch";
 
-export async function getTicketsAll() {
+export async function getTicketsAll(page: number, limit: number) {
   try {
-    const response = await apiFetch(`${BASE_URL}/ticket/all`, {
+    const response = await apiFetch(`${BASE_URL}/ticket/all?page=${page}&limit=${limit}`, {
       headers: {
         "Content-Type": "application/json",
       },
