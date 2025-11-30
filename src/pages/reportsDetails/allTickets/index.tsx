@@ -3,8 +3,11 @@ import type { ReportItem } from "../../../types/ReportProps";
 import { getTicketsAll } from "../../../services/ReportService";
 import styles from "./AllTickets.module.css";
 import { Button } from "../../../components";
+import { notify } from "../../../services/notification";
+import { LoadingOverlay } from "../../../components";
 
 export default function AllTickets() {
+  const [loading, setLoading] = useState(false);
   const [tickets, setTickets] = useState<ReportItem[]>([]);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);
@@ -12,6 +15,7 @@ export default function AllTickets() {
 
   useEffect(() => {
     async function load() {
+      setLoading(true);
       try {
         const response = await getTicketsAll(page, limit);
         console.log(response);
@@ -19,11 +23,16 @@ export default function AllTickets() {
         setTickets(response.data);
         setLimit(response.limit);
         setTotalPages(response.totalPages);
-        // setData(Array.isArray(response) ? response : [response]);
+        setLoading(false);
+        notify("success", "Sucesso.");
       } catch (error) {
         if (typeof error === "string") {
+          notify("warning", error);
+          setLoading(false);
           console.log(error);
         } else if (error instanceof Error) {
+          notify("warning", error.message);
+          setLoading(false);
           console.log(error.message);
         }
       }
@@ -39,6 +48,7 @@ export default function AllTickets() {
 
   return (
     <div className={styles.container}>
+      <LoadingOverlay isLoading={loading} />
       <h3>Todos os chamados</h3>
       <table
         border={1}
