@@ -7,7 +7,8 @@ import {
   Reports,
   Management,
   UserManagement,
-  ReportDetails,
+  MyTickets,
+  AllTickets
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
@@ -45,8 +46,12 @@ export const router = createBrowserRouter([
             path: "/user-management",
           },
           {
-            element: <ReportDetails />,
-            path: "/ticket/:mode",
+            element: <MyTickets />,
+            path: "/ticket/my",
+          },
+          {
+            element: <AllTickets />,
+            path: "/ticket/all",
           },
         ],
       },
