@@ -3,10 +3,17 @@ import { Button } from "../index";
 import SidebarOption from "../sidebar-option";
 import styles from "./Sidebar.module.css";
 import { useNavigate } from "react-router-dom";
+import { notify } from "../../services/notification";
 
 export default function Sidebar() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  function hendleNotify() {
+    notify("warning", "Mensagem de erro");
+    setLoading(!loading);
+  }
+
   return (
     <div>
       <aside className={styles.sidebar}>
@@ -14,7 +21,7 @@ export default function Sidebar() {
         <div className={styles["box-new-ticket"]}>
           <Button
             title="Novo chamado"
-            onClick={() => setLoading(!loading)}
+            onClick={hendleNotify}
             isLoading={loading}
             height="55px"
             width="240px"

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getTickets } from "../../services/ReportService";
+import { notify } from "../../services/notification";
 
 type ReportItem = {
   id: number;
@@ -32,9 +33,11 @@ export function ReportDetails() {
         setData(Array.isArray(response) ? response : [response]);
       } catch (error) {
         if (typeof error === "string") {
+          notify("warning", error);
           console.log(error);
         } else if (error instanceof Error) {
-          console.log(error.message);
+
+          console.log(">>>>>>>>>", error.message);
         }
       }
       setLoading(false);
