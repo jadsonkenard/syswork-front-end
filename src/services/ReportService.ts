@@ -26,9 +26,9 @@ export async function getTicketsAll(page: number, limit: number) {
   }
 }
 
-export async function getMyTickets() {
+export async function getMyTickets(page: number, limit: number) {
   try {
-    const response = await apiFetch(`${BASE_URL}/ticket/my`, {
+    const response = await apiFetch(`${BASE_URL}/ticket/my?page=${page}&limit=${limit}`, {
       headers: {
         "Content-Type": "application/json",
       },
