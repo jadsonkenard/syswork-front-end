@@ -8,7 +8,8 @@ import {
   Management,
   UserManagement,
   MyTickets,
-  AllTickets
+  AllTickets,
+  TicketsId
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
           {
             element: <AllTickets />,
             path: "/ticket/all",
+          },
+          {
+            element: <TicketsId />,
+            path: "/ticket/ticketsbyid",
           },
         ],
       },

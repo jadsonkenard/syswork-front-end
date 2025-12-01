@@ -4,5 +4,14 @@ import SidebarOption from "./sidebar-option";
 import Input from "./input";
 import { DynamicIcon } from "./dynamic-icon/DynamicIcon";
 import { LoadingOverlay } from "./loading-overlay";
+import ModalId from "./modal-id";
 
-export { Layout, Button, SidebarOption, DynamicIcon, Input, LoadingOverlay };
+export {
+  Layout,
+  Button,
+  SidebarOption,
+  DynamicIcon,
+  Input,
+  LoadingOverlay,
+  ModalId,
+};

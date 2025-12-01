@@ -2,10 +2,20 @@ import { useState } from "react";
 import { DynamicIcon } from "../../components";
 import styles from "./Reports.module.css";
 import { useNavigate } from "react-router-dom";
+import { ModalId } from "../../components";
 
 export default function Reports() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  function handleConfirm(idDigitado: string) {
+    navigate("/ticket/ticketsbyid", {
+      state: { id: idDigitado },
+    });
+
+    setIsOpen(false);
+  }
+
   const navigate = useNavigate();
-  const [id, setId] = useState(1);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Relatorios</h2>
@@ -32,10 +42,7 @@ export default function Reports() {
           />
           <p className={styles["box-text"]}>Buscar todos os chamados</p>
         </div>
-        <div
-          className={styles["box-item"]}
-          onClick={() => navigate(`/ticket/${id}`)}
-        >
+        <div className={styles["box-item"]} onClick={() => setIsOpen(true)}>
           <DynamicIcon
             iconName="report3"
             color="var(--neutral-500)"
@@ -74,6 +81,11 @@ export default function Reports() {
           </p>
         </div>
       </section>
+      <ModalId
+        isOpen={isOpen}
+        onCancel={() => setIsOpen(false)}
+        onConfirm={handleConfirm}
+      ></ModalId>
     </div>
   );
 }

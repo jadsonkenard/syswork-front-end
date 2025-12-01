@@ -6,6 +6,7 @@ import Management from "./management";
 import UserManagement from "./user-management";
 import MyTickets from "./reportsDetails/myTickets";
 import AllTickets from "./reportsDetails/allTickets";
+import TicketsId from "./reportsDetails/ticketsId";
 
 export {
   Home,
@@ -15,5 +16,6 @@ export {
   Management,
   UserManagement,
   MyTickets,
-  AllTickets
+  AllTickets,
+  TicketsId,
 };
