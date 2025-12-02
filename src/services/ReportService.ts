@@ -147,3 +147,36 @@ export async function getTicketsByIdRequester(
     throw error;
   }
 }
+
+export async function getTicketsByIdExecutor(
+  id: number,
+  page: number,
+  limit: number
+) {
+  try {
+    const response = await apiFetch(
+      `${BASE_URL}/department/ticket/executor/${id}?page=${page}&limit=${limit}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }
+    );
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        errorData.error || errorData.message || "Erro desconhecido"
+      );
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof TypeError && error.message.includes("fetch")) {
+      throw new Error("Servidor indisponível. Tente novamente mais tarde.");
+    }
+    console.error("Erro inesperado. ", error);
+    throw error;
+  }
+}

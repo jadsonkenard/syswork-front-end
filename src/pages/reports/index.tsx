@@ -69,7 +69,10 @@ export default function Reports() {
             Buscar chamados por ID do usuário
           </p>
         </div>
-        <div className={styles["box-item"]} onClick={() => openModal("/ticket/ticketsbyidrequester")}>
+        <div
+          className={styles["box-item"]}
+          onClick={() => openModal("/ticket/ticketsbyidrequester")}
+        >
           <DynamicIcon
             iconName="report5"
             color="var(--neutral-500)"
@@ -79,7 +82,10 @@ export default function Reports() {
             Buscar chamados por setor solicitante
           </p>
         </div>
-        <div className={styles["box-item"]}>
+        <div
+          className={styles["box-item"]}
+          onClick={() => openModal("/ticket/ticketsbyidexecutor")}
+        >
           <DynamicIcon
             iconName="report6"
             color="var(--neutral-500)"
