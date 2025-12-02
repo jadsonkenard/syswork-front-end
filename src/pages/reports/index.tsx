@@ -7,8 +7,10 @@ import { ModalId } from "../../components";
 export default function Reports() {
   const [isOpen, setIsOpen] = useState(false);
   const [route, setRoute] = useState("");
+  const [titleModal, setTitleModal] = useState("");
 
-  function openModal(route: string) {
+  function openModal(route: string, title: string) {
+    setTitleModal(title);
     setRoute(route);
     setIsOpen(true);
   }
@@ -47,7 +49,9 @@ export default function Reports() {
         </div>
         <div
           className={styles["box-item"]}
-          onClick={() => openModal("/ticket/ticketsbyid")}
+          onClick={() =>
+            openModal("/ticket/ticketsbyid", "Informe o ID do chamado")
+          }
         >
           <DynamicIcon
             iconName="report3"
@@ -58,7 +62,9 @@ export default function Reports() {
         </div>
         <div
           className={styles["box-item"]}
-          onClick={() => openModal("/ticket/ticketsbyiduser")}
+          onClick={() =>
+            openModal("/ticket/ticketsbyiduser", "Informe o ID do usuário")
+          }
         >
           <DynamicIcon
             iconName="report4"
@@ -71,7 +77,12 @@ export default function Reports() {
         </div>
         <div
           className={styles["box-item"]}
-          onClick={() => openModal("/ticket/ticketsbyidrequester")}
+          onClick={() =>
+            openModal(
+              "/ticket/ticketsbyidrequester",
+              "Informe o ID do setor solicitante"
+            )
+          }
         >
           <DynamicIcon
             iconName="report5"
@@ -84,7 +95,12 @@ export default function Reports() {
         </div>
         <div
           className={styles["box-item"]}
-          onClick={() => openModal("/ticket/ticketsbyidexecutor")}
+          onClick={() =>
+            openModal(
+              "/ticket/ticketsbyidexecutor",
+              "Informe o ID do setor executante"
+            )
+          }
         >
           <DynamicIcon
             iconName="report6"
@@ -101,7 +117,9 @@ export default function Reports() {
         route={route}
         onCancel={() => setIsOpen(false)}
         onConfirm={handleConfirm}
-      ></ModalId>
+      >
+        <h3>{titleModal}</h3>
+      </ModalId>
     </div>
   );
 }

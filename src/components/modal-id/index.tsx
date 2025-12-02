@@ -7,17 +7,24 @@ interface ModalIdProps {
   isOpen: boolean;
   route: string;
   onCancel: () => void;
-  onConfirm: (value: string, route: string) => void;
+  onConfirm: (value: string, route: string, children: React.ReactNode) => void;
+  children: React.ReactNode;
 }
 
-export default function ModalId({ isOpen, route,onCancel, onConfirm }: ModalIdProps) {
+export default function ModalId({
+  isOpen,
+  route,
+  onCancel,
+  onConfirm,
+  children,
+}: ModalIdProps) {
   const [value, setValue] = useState("");
   if (!isOpen) return null;
 
   return (
     <div className={styles["modal-overlay"]}>
       <div className={styles["modal-container"]}>
-        <h3>Informe o ID do chamado.</h3>
+        {children}
         <Input
           name="id-for-report"
           placeholder="informe o ID"
@@ -36,7 +43,7 @@ export default function ModalId({ isOpen, route,onCancel, onConfirm }: ModalIdPr
           />
           <Button
             title="Confirmar"
-            onClick={() => onConfirm(value, route)}
+            onClick={() => onConfirm(value, route, children)}
             height="30px"
             width="100px"
             isLoading={false}

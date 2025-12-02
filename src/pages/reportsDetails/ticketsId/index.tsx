@@ -44,7 +44,7 @@ export default function TicketsId() {
   return (
     <div className={styles.container}>
       <LoadingOverlay isLoading={loading} />
-      <h3>Tickets por ID</h3>
+      <h3>Chamados por ID</h3>
       <table
         border={1}
         cellPadding="8"
