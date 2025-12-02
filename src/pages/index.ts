@@ -1,4 +1,5 @@
 import Home from "./home";
+import TicketDetail from "./ticket-detail";
 import Notfound from "./not-found";
 import Login from "./login";
 import Reports from "./reports";
@@ -13,6 +14,7 @@ import TicketsByIdExecutor from "./reportsDetails/ticketsByIdExecutor";
 
 export {
   Home,
+  TicketDetail,
   Notfound,
   Login,
   Reports,
@@ -23,5 +25,5 @@ export {
   TicketsId,
   TicketsByIdUser,
   TicketsByIdRequester,
-  TicketsByIdExecutor
+  TicketsByIdExecutor,
 };

@@ -1,18 +1,12 @@
-import { useState } from "react";
-import { LoadingOverlay } from "../../components";
-
+import styles from "./Home.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-  const [loading, setLoading] = useState(false)
-
-  function handleLoading(){
-    setLoading(true)
-  }
+  const navigate = useNavigate();
   return (
-    <div>
-      <h1>Home</h1>
-      <LoadingOverlay isLoading={loading} />
-      <button onClick={handleLoading}>Abrir</button>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Home</h2>
+      <button onClick={() => navigate("/ticketdetail")}>IR</button>
     </div>
   );
 }
