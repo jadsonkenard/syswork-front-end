@@ -1,12 +1,12 @@
-import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getTicketsByIdUser } from "../../../services/ReportService";
+import { getTicketsByIdRequester } from "../../../services/ReportService";
+import { useLocation } from "react-router-dom";
 import type { ReportItem } from "../../../types/ReportProps";
 import { notify } from "../../../services/notification";
 import { Button, LoadingOverlay } from "../../../components";
-import styles from "./TicketsById.module.css";
+import styles from "./TicketsByIdRequester.module.css";
 
-export default function TicketsByIdUser() {
+export default function TicketsByIdRequester() {
   const [loading, setLoading] = useState(false);
   const [tickets, setTickets] = useState<ReportItem[]>([]);
   const [page, setPage] = useState(1);
@@ -18,7 +18,7 @@ export default function TicketsByIdUser() {
   useEffect(() => {
     async function getTicketsId() {
       try {
-        const response = await getTicketsByIdUser(id, page, limit);
+        const response = await getTicketsByIdRequester(id, page, limit);
         console.log(response);
         setTickets(response.data);
         setLimit(response.limit);
@@ -49,7 +49,7 @@ export default function TicketsByIdUser() {
   return (
     <div className={styles.container}>
       <LoadingOverlay isLoading={loading} />
-      <h3>Chamados por ID de usuário</h3>
+      <h3>Chamados por setor solicitante</h3>
       <table
         border={1}
         cellPadding="8"

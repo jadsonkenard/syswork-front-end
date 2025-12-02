@@ -69,7 +69,7 @@ export default function Reports() {
             Buscar chamados por ID do usuário
           </p>
         </div>
-        <div className={styles["box-item"]}>
+        <div className={styles["box-item"]} onClick={() => openModal("/ticket/ticketsbyidrequester")}>
           <DynamicIcon
             iconName="report5"
             color="var(--neutral-500)"

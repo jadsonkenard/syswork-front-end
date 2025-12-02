@@ -82,7 +82,11 @@ export async function getTicketById(id: number) {
   }
 }
 
-export async function getTicketsByIdUser(id: number, page: number, limit: number) {
+export async function getTicketsByIdUser(
+  id: number,
+  page: number,
+  limit: number
+) {
   try {
     const response = await apiFetch(
       `${BASE_URL}/ticket/tickets/user/${id}?page=${page}&limit=${limit}`,
@@ -95,7 +99,42 @@ export async function getTicketsByIdUser(id: number, page: number, limit: number
     );
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.error || errorData.message || "Erro desconhecido");
+      throw new Error(
+        errorData.error || errorData.message || "Erro desconhecido"
+      );
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof TypeError && error.message.includes("fetch")) {
+      throw new Error("Servidor indisponível. Tente novamente mais tarde.");
+    }
+    console.error("Erro inesperado. ", error);
+    throw error;
+  }
+}
+
+export async function getTicketsByIdRequester(
+  id: number,
+  page: number,
+  limit: number
+) {
+  try {
+    const response = await apiFetch(
+      `${BASE_URL}/department/ticket/requested/${id}?page=${page}&limit=${limit}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }
+    );
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        errorData.error || errorData.message || "Erro desconhecido"
+      );
     }
 
     const data = await response.json();

@@ -8,6 +8,7 @@ import MyTickets from "./reportsDetails/myTickets";
 import AllTickets from "./reportsDetails/allTickets";
 import TicketsId from "./reportsDetails/ticketsId";
 import TicketsByIdUser from "./reportsDetails/ticketsByIdUser";
+import TicketsByIdRequester from "./reportsDetails/ticketsByIdRequester";
 
 export {
   Home,
@@ -20,4 +21,5 @@ export {
   AllTickets,
   TicketsId,
   TicketsByIdUser,
+  TicketsByIdRequester,
 };
