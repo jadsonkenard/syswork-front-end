@@ -29,11 +29,11 @@ export default function TicketsByIdUser() {
         if (typeof error === "string") {
           notify("warning", error);
           setLoading(false);
-          console.log(error);
+          console.log(">>>>>>>> catch 1", error);
         } else if (error instanceof Error) {
           notify("warning", error.message);
           setLoading(false);
-          console.log(error.message);
+          console.log(">>>>>>>> catch 2",error.message);
         }
       }
     }

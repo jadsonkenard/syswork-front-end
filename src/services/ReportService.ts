@@ -95,7 +95,7 @@ export async function getTicketsByIdUser(id: number, page: number, limit: number
     );
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.message);
+      throw new Error(errorData.error || errorData.message || "Erro desconhecido");
     }
 
     const data = await response.json();
