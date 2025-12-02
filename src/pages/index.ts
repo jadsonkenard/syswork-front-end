@@ -7,6 +7,7 @@ import UserManagement from "./user-management";
 import MyTickets from "./reportsDetails/myTickets";
 import AllTickets from "./reportsDetails/allTickets";
 import TicketsId from "./reportsDetails/ticketsId";
+import TicketsByIdUser from "./reportsDetails/ticketsByIdUser";
 
 export {
   Home,
@@ -18,4 +19,5 @@ export {
   MyTickets,
   AllTickets,
   TicketsId,
+  TicketsByIdUser,
 };

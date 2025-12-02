@@ -17,7 +17,7 @@ export default function TicketsId() {
       try {
         const response = await getTicketById(id);
         console.log(response);
-        setTicket([response])
+        setTicket([response]);
         setLoading(false);
         notify("success", "Sucesso.");
       } catch (error) {

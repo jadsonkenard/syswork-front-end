@@ -6,12 +6,15 @@ import { ModalId } from "../../components";
 
 export default function Reports() {
   const [isOpen, setIsOpen] = useState(false);
+  const [route, setRoute] = useState("");
 
-  function handleConfirm(idDigitado: string) {
-    navigate("/ticket/ticketsbyid", {
-      state: { id: idDigitado },
-    });
+  function openModal(route: string) {
+    setRoute(route);
+    setIsOpen(true);
+  }
 
+  function handleConfirm(id: string, route: string) {
+    navigate(route, { state: { id } });
     setIsOpen(false);
   }
 
@@ -42,7 +45,10 @@ export default function Reports() {
           />
           <p className={styles["box-text"]}>Buscar todos os chamados</p>
         </div>
-        <div className={styles["box-item"]} onClick={() => setIsOpen(true)}>
+        <div
+          className={styles["box-item"]}
+          onClick={() => openModal("/ticket/ticketsbyid")}
+        >
           <DynamicIcon
             iconName="report3"
             color="var(--neutral-500)"
@@ -50,7 +56,10 @@ export default function Reports() {
           />
           <p className={styles["box-text"]}>Buscar chamados por ID</p>
         </div>
-        <div className={styles["box-item"]}>
+        <div
+          className={styles["box-item"]}
+          onClick={() => openModal("/ticket/ticketsbyiduser")}
+        >
           <DynamicIcon
             iconName="report4"
             color="var(--neutral-500)"
@@ -83,6 +92,7 @@ export default function Reports() {
       </section>
       <ModalId
         isOpen={isOpen}
+        route={route}
         onCancel={() => setIsOpen(false)}
         onConfirm={handleConfirm}
       ></ModalId>

@@ -5,11 +5,12 @@ import { useState } from "react";
 
 interface ModalIdProps {
   isOpen: boolean;
+  route: string;
   onCancel: () => void;
-  onConfirm: (value: string) => void;
+  onConfirm: (value: string, route: string) => void;
 }
 
-export default function ModalId({ isOpen, onCancel, onConfirm }: ModalIdProps) {
+export default function ModalId({ isOpen, route,onCancel, onConfirm }: ModalIdProps) {
   const [value, setValue] = useState("");
   if (!isOpen) return null;
 
@@ -35,7 +36,7 @@ export default function ModalId({ isOpen, onCancel, onConfirm }: ModalIdProps) {
           />
           <Button
             title="Confirmar"
-            onClick={() => onConfirm(value)}
+            onClick={() => onConfirm(value, route)}
             height="30px"
             width="100px"
             isLoading={false}
