@@ -2,7 +2,7 @@ import styles from "./Home.module.css";
 import { Link } from "react-router-dom";
 
 export default function Home() {
-  const ticketExemple = 86;
+  const ticketExemple = 33;
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Home</h2>

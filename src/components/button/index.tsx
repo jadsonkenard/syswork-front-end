@@ -9,6 +9,7 @@ type ButtonProps = {
   width?: string;
   height?: string;
   type?: "button" | "submit" | "reset";
+  backgroundColor?: string;
 };
 
 export default function Button({
@@ -18,7 +19,8 @@ export default function Button({
   onClick,
   width,
   height,
-  type = "button"
+  type = "button",
+  backgroundColor = "var(--primary-dark)"
 }: ButtonProps) {
   return (
     <button
@@ -29,6 +31,7 @@ export default function Button({
       style={{
         ["--btn-width" as string]: width,
         ["--btn-height" as string]: height,
+        backgroundColor: backgroundColor
       }}
     >
       {isLoading ? <Dots color="#FFF" size={16} /> : title}
