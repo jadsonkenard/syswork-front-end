@@ -3,13 +3,21 @@ import { DynamicIcon } from "../../components";
 import styles from "./Reports.module.css";
 import { useNavigate } from "react-router-dom";
 import { ModalId } from "../../components";
+import { useAuth } from "../../hooks/useAuth";
+import { notify } from "../../services/notification";
 
 export default function Reports() {
   const [isOpen, setIsOpen] = useState(false);
   const [route, setRoute] = useState("");
   const [titleModal, setTitleModal] = useState("");
 
+  const { user } = useAuth();
+
   function openModal(route: string, title: string) {
+    if (user?.role === "user") {
+      notify("error", "Acesso negado. Requer permissão de administrador.");
+      return;
+    }
     setTitleModal(title);
     setRoute(route);
     setIsOpen(true);

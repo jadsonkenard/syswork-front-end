@@ -3,15 +3,17 @@ import { DynamicIcon } from "../dynamic-icon/DynamicIcon";
 
 type LabelProps = {
   title: string;
-  text: string;
+  value: string | number;
 };
 
-export default function Label({ title, text }: LabelProps) {
+export default function Label({ title, value }: LabelProps) {
   return (
     <div className={styles.container}>
-      <DynamicIcon iconName="user" color="var(--neutral-500)" size={25} />
+      <div>
+        <DynamicIcon iconName="user" color="var(--neutral-500)" size={25} />
+      </div>
       <strong className={styles.title}>{title}:</strong>
-      <p className={styles.text}>{text}</p>
+      <p className={styles.value}>{value}</p>
     </div>
   );
 }

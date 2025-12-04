@@ -1,7 +1,6 @@
 .container {
-  width: 450px;
-  min-width: 300px;
-  height: 55px;
+  width: 600px;
+  min-height: 45px;
   border-radius: 4px;
   background-color: var(--neutral-200);
   display: flex;
@@ -13,4 +12,13 @@
 .title {
   color: var(--neutral-500);
   margin: 0 5px;
+  white-space: nowrap;
+}
+
+.value {
+  flex: 1 1 auto; /* ocupa o resto do espaço */
+  min-width: 0; /* permite que a célula encolha e o texto quebre */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  margin: 5px 0;
 }
