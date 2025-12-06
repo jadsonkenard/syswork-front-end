@@ -104,27 +104,50 @@ export default function TicketDetail() {
               isLoading={false}
               onClick={() => updateStatus(item.id, item.status)}
             />
-            <Label title="ID" value={`#${item.id}`} />
-            <Label title="Usuário solicitante" value={item.requester_user?.username} />
-            <Label title="Título" value={item.title} />
-            <Label title="Status" value={statusLabels[item.status]} valueColor={
+            <Label iconName="id" title="ID" value={`#${item.id}`} />
+            <Label
+              iconName="userCheck"
+              title="Usuário solicitante"
+              value={item.requester_user?.username}
+            />
+            <Label iconName="info" title="Título" value={item.title} />
+            <Label
+              iconName="status"
+              title="Status"
+              value={statusLabels[item.status]}
+              valueColor={
                 item.status === "open"
                   ? "var(--error-dark)"
                   : item.status === "in progress"
                   ? "var(--info-dark)"
                   : "var(--primary-dark)"
-              }/>
+              }
+            />
             <Label
+              iconName="department1"
               title="Setor solicitante"
               value={item.requester_department?.name}
             />
             <Label
+              iconName="department2"
               title="Setor executante"
               value={item.executor_department?.name}
             />
-            <Label title="Criado em" value={formatDate(item.createdAt)} />
-            <Label title="Atualizado em" value={formatDate(item.updatedAt)} />
-            <Label title="Descrição" value={item.description} />
+            <Label
+              iconName="time1"
+              title="Criado em"
+              value={formatDate(item.createdAt)}
+            />
+            <Label
+              iconName="time2"
+              title="Atualizado em"
+              value={formatDate(item.updatedAt)}
+            />
+            <Label
+              iconName="question"
+              title="Descrição"
+              value={item.description}
+            />
           </div>
         ))}
       </nav>
