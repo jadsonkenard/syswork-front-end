@@ -104,16 +104,22 @@ export default function TicketDetail() {
               onClick={() => updateStatus(item.id, item.status)}
             />
             <Label title="ID" value={`#${item.id}`} />
-            <Label title="Usuário solicitante" value={item.requester_user_id} />
+            <Label title="Usuário solicitante" value={item.requester_user?.username} />
             <Label title="Título" value={item.title} />
-            <Label title="Status" value={statusLabels[item.status]} />
+            <Label title="Status" value={statusLabels[item.status]} valueColor={
+                item.status === "open"
+                  ? "var(--error-dark)"
+                  : item.status === "in progress"
+                  ? "var(--info-dark)"
+                  : "var(--primary-dark)"
+              }/>
             <Label
               title="Setor solicitante"
-              value={item.requester_department_id}
+              value={item.requester_department?.name}
             />
             <Label
               title="Setor executante"
-              value={item.executor_department_id}
+              value={item.executor_department?.name}
             />
             <Label title="Criado em" value={item.createdAt} />
             <Label title="Atualizado em" value={item.updatedAt} />
