@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { ReportItem } from "../../../types/ReportProps";
+import { statusLabels, type ReportItem } from "../../../types/ReportProps";
 import { getMyTickets } from "../../../services/ReportService";
 import styles from "./MyTickets.module.css";
 import { Button, LoadingOverlay } from "../../../components";
@@ -37,12 +37,6 @@ export default function MyTickets() {
     }
     load();
   }, [page, limit]);
-
-  const statusLabels = {
-    open: "Aberto",
-    "in progress": "Em andamento",
-    done: "Concluído",
-  };
 
   return (
     <div className={styles.container}>

@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getTicketsByIdUser } from "../../../services/ReportService";
-import type { ReportItem } from "../../../types/ReportProps";
+import { statusLabels, type ReportItem } from "../../../types/ReportProps";
 import { notify } from "../../../services/notification";
 import { Button, LoadingOverlay } from "../../../components";
 import styles from "./TicketsById.module.css";
@@ -39,12 +39,6 @@ export default function TicketsByIdUser() {
     }
     getTicketsId();
   }, [id, page, limit]);
-
-  const statusLabels = {
-    open: "Aberto",
-    "in progress": "Em andamento",
-    done: "Concluído",
-  };
 
   return (
     <div className={styles.container}>

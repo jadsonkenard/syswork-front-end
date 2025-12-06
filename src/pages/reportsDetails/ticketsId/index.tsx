@@ -4,7 +4,7 @@ import { getTicketById } from "../../../services/ReportService";
 import { notify } from "../../../services/notification";
 import { LoadingOverlay } from "../../../components";
 import styles from "./TicketsId.module.css";
-import type { ReportItem } from "../../../types/ReportProps";
+import { statusLabels, type ReportItem } from "../../../types/ReportProps";
 
 export default function TicketsId() {
   const [loading, setLoading] = useState(false);
@@ -34,12 +34,6 @@ export default function TicketsId() {
     }
     getTicketsId();
   }, [id]);
-
-  const statusLabels = {
-    open: "Aberto",
-    "in progress": "Em andamento",
-    done: "Concluído",
-  };
 
   return (
     <div className={styles.container}>

@@ -4,7 +4,7 @@ import { Button, Label, LoadingOverlay } from "../../components";
 import { getTicketById } from "../../services/ReportService";
 import { useEffect, useState } from "react";
 import { notify } from "../../services/notification";
-import type { ReportItem } from "../../types/ReportProps";
+import { statusLabels, type ReportItem } from "../../types/ReportProps";
 import { TicketUpdateStatus } from "../../services/TicketService";
 
 export default function TicketDetail() {
@@ -102,12 +102,11 @@ export default function TicketDetail() {
               }
               isLoading={false}
               onClick={() => updateStatus(item.id, item.status)}
-              disabled={item.status === "done" ? true : false}
             />
             <Label title="ID" value={`#${item.id}`} />
             <Label title="Usuário solicitante" value={item.requester_user_id} />
             <Label title="Título" value={item.title} />
-            <Label title="Status" value={item.status} />
+            <Label title="Status" value={statusLabels[item.status]} />
             <Label
               title="Setor solicitante"
               value={item.requester_department_id}

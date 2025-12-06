@@ -3,7 +3,7 @@ import { getTicketsByIdExecutor } from "../../../services/ReportService";
 import { useLocation } from "react-router-dom";
 import { notify } from "../../../services/notification";
 import styles from "./TicketsByIdExecutor.module.css";
-import type { ReportItem } from "../../../types/ReportProps";
+import {statusLabels, type ReportItem } from "../../../types/ReportProps";
 import { Button, LoadingOverlay } from "../../../components";
 
 export default function TicketsByIdExecutor() {
@@ -39,12 +39,6 @@ export default function TicketsByIdExecutor() {
     }
     getTicketsId();
   }, [id, page, limit]);
-
-  const statusLabels = {
-    open: "Aberto",
-    "in progress": "Em andamento",
-    done: "Concluído",
-  };
 
   return (
     <div className={styles.container}>

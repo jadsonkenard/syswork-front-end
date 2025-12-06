@@ -11,3 +11,9 @@ export type ReportItem = {
   createdAt: string;
   updatedAt: string;
 };
+
+export const statusLabels = {
+  open: "Aberto",
+  "in progress": "Em andamento",
+  done: "Concluído",
+};
