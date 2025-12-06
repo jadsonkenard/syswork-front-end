@@ -5,4 +5,6 @@ export interface User {
   role: string;
   status: string;
   full_name: string;
+  department_id: number;
+  position_id: number;
 }

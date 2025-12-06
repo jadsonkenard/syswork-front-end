@@ -6,6 +6,7 @@ import { DynamicIcon } from "./dynamic-icon/DynamicIcon";
 import { LoadingOverlay } from "./loading-overlay";
 import ModalId from "./modal-id";
 import Label from "./label";
+import Card from "./card";
 
 export {
   Layout,
@@ -15,5 +16,6 @@ export {
   Input,
   LoadingOverlay,
   ModalId,
-  Label
+  Label,
+  Card,
 };

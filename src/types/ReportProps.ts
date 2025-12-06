@@ -1,7 +1,7 @@
 import { type Department } from "./Department";
 import { type User } from "./User";
 
-type TicketStatus = "open" | "in progress" | "done";
+export type TicketStatus = "open" | "in progress" | "done";
 
 export type ReportItem = {
   id: number;
