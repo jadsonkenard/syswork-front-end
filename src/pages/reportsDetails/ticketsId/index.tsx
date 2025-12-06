@@ -77,9 +77,9 @@ export default function TicketsId() {
               >
                 {statusLabels[item.status]}
               </td>
-              <td>{item.requester_user_id}</td>
-              <td>{item.requester_department_id}</td>
-              <td>{item.executor_department_id}</td>
+              <td>{item.requester_user?.username}</td>
+              <td>{item.requester_department?.name}</td>
+              <td>{item.requester_department?.name}</td>
               <td>{item.createdAt}</td>
               <td>{item.updatedAt}</td>
             </tr>

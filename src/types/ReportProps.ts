@@ -1,3 +1,6 @@
+import { type Department } from "./Department";
+import { type User } from "./User";
+
 type TicketStatus = "open" | "in progress" | "done";
 
 export type ReportItem = {
@@ -5,9 +8,12 @@ export type ReportItem = {
   title: string;
   description: string;
   status: TicketStatus;
-  requester_department_id: number;
-  executor_department_id: number;
-  requester_user_id: number;
+  requester_department_id: Department;
+  executor_department_id: Department;
+  requester_department: Department;
+  executor_department: Department;
+  requester_user_id: User;
+  requester_user: User;
   createdAt: string;
   updatedAt: string;
 };
