@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { notify } from "../../services/notification";
 import { statusLabels, type ReportItem } from "../../types/ReportProps";
 import { TicketUpdateStatus } from "../../services/TicketService";
+import { formatDate } from "../../utils/formatDate";
 
 export default function TicketDetail() {
   const { state } = useLocation();
@@ -121,8 +122,8 @@ export default function TicketDetail() {
               title="Setor executante"
               value={item.executor_department?.name}
             />
-            <Label title="Criado em" value={item.createdAt} />
-            <Label title="Atualizado em" value={item.updatedAt} />
+            <Label title="Criado em" value={formatDate(item.createdAt)} />
+            <Label title="Atualizado em" value={formatDate(item.updatedAt)} />
             <Label title="Descrição" value={item.description} />
           </div>
         ))}

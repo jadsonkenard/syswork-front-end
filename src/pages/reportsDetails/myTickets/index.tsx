@@ -4,6 +4,7 @@ import { getMyTickets } from "../../../services/ReportService";
 import styles from "./MyTickets.module.css";
 import { Button, LoadingOverlay } from "../../../components";
 import { notify } from "../../../services/notification";
+import { formatDate } from "../../../utils/formatDate";
 
 export default function MyTickets() {
   const [loading, setLoading] = useState(false);
@@ -83,8 +84,8 @@ export default function MyTickets() {
               <td>{item.requester_user?.username}</td>
               <td>{item.requester_department?.name}</td>
               <td>{item.requester_department?.name}</td>
-              <td>{item.createdAt}</td>
-              <td>{item.updatedAt}</td>
+              <td>{formatDate(item.createdAt)}</td>
+              <td>{formatDate(item.updatedAt)}</td>
             </tr>
           ))}
         </tbody>

@@ -5,6 +5,7 @@ import styles from "./AllTickets.module.css";
 import { Button } from "../../../components";
 import { notify } from "../../../services/notification";
 import { LoadingOverlay } from "../../../components";
+import { formatDate } from "../../../utils/formatDate";
 
 export default function AllTickets() {
   const [loading, setLoading] = useState(false);
@@ -85,8 +86,8 @@ export default function AllTickets() {
               <td>{item.requester_user?.username}</td>
               <td>{item.requester_department?.name}</td>
               <td>{item.requester_department?.name}</td>
-              <td>{item.createdAt}</td>
-              <td>{item.updatedAt}</td>
+              <td>{formatDate(item.createdAt)}</td>
+              <td>{formatDate(item.updatedAt)}</td>
             </tr>
           ))}
         </tbody>

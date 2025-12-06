@@ -5,6 +5,7 @@ import { notify } from "../../../services/notification";
 import styles from "./TicketsByIdExecutor.module.css";
 import {statusLabels, type ReportItem } from "../../../types/ReportProps";
 import { Button, LoadingOverlay } from "../../../components";
+import { formatDate } from "../../../utils/formatDate";
 
 export default function TicketsByIdExecutor() {
   const [loading, setLoading] = useState(false);
@@ -85,8 +86,8 @@ export default function TicketsByIdExecutor() {
               <td>{item.requester_user?.username}</td>
               <td>{item.requester_department?.name}</td>
               <td>{item.requester_department?.name}</td>
-              <td>{item.createdAt}</td>
-              <td>{item.updatedAt}</td>
+              <td>{formatDate(item.createdAt)}</td>
+              <td>{formatDate(item.updatedAt)}</td>
             </tr>
           ))}
         </tbody>
