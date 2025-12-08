@@ -23,7 +23,7 @@ export default function TicketsByIdExecutor() {
         console.log(response);
         setTickets(response.data);
         setLimit(response.limit);
-        setTotalPages(response.totalPages);
+        setTotalPages(response.pages);
         setLoading(false);
         notify("success", "Sucesso.");
       } catch (error) {

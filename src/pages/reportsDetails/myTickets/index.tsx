@@ -21,7 +21,7 @@ export default function MyTickets() {
         console.log(response.limit);
         setTickets(response.data);
         setLimit(response.limit);
-        setTotalPages(response.totalPages);
+        setTotalPages(response.pages);
         setLoading(false);
         notify("success", "Sucesso.");
       } catch (error) {

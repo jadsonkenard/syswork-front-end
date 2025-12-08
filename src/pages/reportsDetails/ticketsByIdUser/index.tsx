@@ -23,7 +23,7 @@ export default function TicketsByIdUser() {
         console.log(response);
         setTickets(response.data);
         setLimit(response.limit);
-        setTotalPages(response.totalPages);
+        setTotalPages(response.pages);
         setLoading(false);
         notify("success", "Sucesso.");
       } catch (error) {
@@ -85,7 +85,7 @@ export default function TicketsByIdUser() {
               </td>
               <td>{item.requester_user?.username}</td>
               <td>{item.requester_department?.name}</td>
-              <td>{item.requester_department?.name}</td>
+              <td>{item.executor_department?.name}</td>
               <td>{formatDate(item.createdAt)}</td>
               <td>{formatDate(item.updatedAt)}</td>
             </tr>
