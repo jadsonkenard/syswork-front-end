@@ -1,7 +1,7 @@
+import type { TicketDetailProps } from "../../types/ticketDetail";
 import styles from "./Card.module.css";
-import type { Ticket } from "../../types/ticket";
 
-interface ICard extends Ticket {
+interface ICard extends TicketDetailProps {
   onClick: () => void;
   statusColor: string;
 }

@@ -5,7 +5,7 @@ import { getTicketById } from "../../services/ReportService";
 import { useEffect, useState } from "react";
 import { notify } from "../../services/notification";
 import { statusLabels, type ReportItem } from "../../types/ReportProps";
-import {ticketUpdateStatus } from "../../services/TicketService";
+import { ticketUpdateStatus } from "../../services/TicketService";
 import { formatDate } from "../../utils/formatDate";
 
 export default function TicketDetail() {
@@ -77,12 +77,6 @@ export default function TicketDetail() {
     <div className={styles.container}>
       <h2 className={styles.title}>Detalhes</h2>
       <LoadingOverlay isLoading={loading} />
-      {/*
-            1- AO CLICAR EM ASSUMIR O STATUS DEVE SER ALTERADO PARA "IN PROGRESS"
-            2- BOTÃO DE ASSUMIR DEVE TER UMA RENDERIZAÇÃO CONDICIONAL ONDE, SE O STATUS DO CHAMADO
-            FOR IN PROGRESS, O TEXTE DEVER MUDAR PARA CONCLUIR.
-            3- ID ID VINDO DA HOME DEVE SER BUSCADO NA API. NOVA ROTA??????
-            */}
       <nav className={styles.nav}>
         {(ticket ?? []).map((item) => (
           <div key={item.id}>

@@ -3,7 +3,7 @@ import { Button, Card, LoadingOverlay } from "../../components";
 import styles from "./Home.module.css";
 import { getTicketsMyDepartmentExecutor } from "../../services/TicketService";
 import { notify } from "../../services/notification";
-import type { ReportItem } from "../../types/ReportProps";
+import { statusLabels, type ReportItem } from "../../types/ReportProps";
 import { formatDate } from "../../utils/formatDate";
 import { useNavigate } from "react-router-dom";
 
@@ -48,10 +48,6 @@ export default function Home() {
     load();
   }, [page, limit]);
 
-  if (!tickets || tickets.length === 0) {
-    return <p>Nenhum registro encontrado.</p>;
-  }
-
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Home</h2>
@@ -61,8 +57,8 @@ export default function Home() {
           <Card
             onClick={() => handleTicket(item.id)}
             id={item.id}
-            status={item.status}
             title={item.title}
+            status={statusLabels[item.status]}
             description={item.description}
             requester_user={item.requester_user?.username}
             requester_department={item.requester_department?.name}
@@ -102,51 +98,3 @@ export default function Home() {
     </div>
   );
 }
-
-// <Link to="/ticketdetail" state={{ ticketExemple }}>
-//   Ver detalhes
-// </Link>
-
-// {(tickets ?? []).map((item) => (
-//   <div key={item.id}>
-//     <Card
-//       onClick={() => handleTicket(item.id)}
-//       id={item.id}
-//       status={item.status}
-//       title={item.title}
-//       description={item.description}
-//       requester_user={item.requester_user?.username}
-//       requester_department={item.requester_department?.name}
-//       executor_department={item.executor_department?.name}
-//       createdAt={formatDate(item.createdAt)}
-//       updatedAt={formatDate(item.updatedAt)}
-//       statusColor={
-//         item.status === "open"
-//           ? "var(--error-dark)"
-//           : item.status === "in progress"
-//           ? "var(--info-dark)"
-//           : "var(--primary-dark)"
-//       }
-//     />
-//   </div>
-// ))}
-// <nav className={styles.content}>
-//   <div className={styles.buttons}>
-//     <Button
-//       title="Anterior"
-//       isLoading={false}
-//       disabled={page === 1}
-//       height="30px"
-//       width="100px"
-//       onClick={() => setPage(page - 1)}
-//     />
-//     <Button
-//       title="Próxima"
-//       isLoading={false}
-//       disabled={page === totalPages}
-//       height="30px"
-//       width="100px"
-//       onClick={() => setPage(page + 1)}
-//     />
-//   </div>
-// </nav>
