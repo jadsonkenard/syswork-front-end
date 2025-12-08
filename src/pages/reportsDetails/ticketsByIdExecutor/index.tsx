@@ -85,7 +85,7 @@ export default function TicketsByIdExecutor() {
               </td>
               <td>{item.requester_user?.username}</td>
               <td>{item.requester_department?.name}</td>
-              <td>{item.requester_department?.name}</td>
+              <td>{item.executor_department?.name}</td>
               <td>{formatDate(item.createdAt)}</td>
               <td>{formatDate(item.updatedAt)}</td>
             </tr>

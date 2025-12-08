@@ -13,7 +13,7 @@ export default function TicketDetail() {
   const [ticket, setTicket] = useState<ReportItem[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const id = state?.ticketExemple;
+  const id = state?.id;
 
   async function updateStatus(id: number, currentStatus: string) {
     const nextStatus = getNextStatus(currentStatus);
@@ -84,7 +84,7 @@ export default function TicketDetail() {
             3- ID ID VINDO DA HOME DEVE SER BUSCADO NA API. NOVA ROTA??????
             */}
       <nav className={styles.nav}>
-        {ticket.map((item) => (
+        {(ticket ?? []).map((item) => (
           <div key={item.id}>
             <Button
               title={
