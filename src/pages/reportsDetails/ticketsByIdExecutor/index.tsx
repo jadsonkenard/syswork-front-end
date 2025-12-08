@@ -3,7 +3,7 @@ import { getTicketsByIdExecutor } from "../../../services/ReportService";
 import { useLocation } from "react-router-dom";
 import { notify } from "../../../services/notification";
 import styles from "./TicketsByIdExecutor.module.css";
-import {statusLabels, type ReportItem } from "../../../types/ReportProps";
+import { statusLabels, type ReportItem } from "../../../types/ReportProps";
 import { Button, LoadingOverlay } from "../../../components";
 import { formatDate } from "../../../utils/formatDate";
 
@@ -71,17 +71,23 @@ export default function TicketsByIdExecutor() {
               <td>{item.id}</td>
               <td>{item.title}</td>
               <td>{item.description}</td>
-              <td
-                style={{
-                  backgroundColor:
-                    item.status === "open"
-                      ? "var(--error-dark)"
-                      : item.status === "in progress"
-                      ? "var(--info-dark)"
-                      : "var(--primary-dark)",
-                }}
-              >
-                {statusLabels[item.status]}
+              <td>
+                <p
+                  style={{
+                    color: "#FFF",
+                    fontWeight: "Bold",
+                    backgroundColor:
+                      item.status === "open"
+                        ? "var(--error-dark)"
+                        : item.status === "in progress"
+                        ? "var(--info-dark)"
+                        : "var(--primary-dark)",
+                    padding: 5,
+                    borderRadius: 4,
+                  }}
+                >
+                  {statusLabels[item.status]}
+                </p>
               </td>
               <td>{item.requester_user?.username}</td>
               <td>{item.requester_department?.name}</td>
