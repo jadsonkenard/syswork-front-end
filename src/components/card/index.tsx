@@ -2,12 +2,13 @@ import styles from "./Card.module.css";
 import type { Ticket } from "../../types/ticket";
 
 interface ICard extends Ticket {
+  onClick: () => void;
   statusColor: string;
 }
 
-export default function Card({ statusColor, ...props }: ICard) {
+export default function Card({ onClick, statusColor, ...props }: ICard) {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={onClick}>
       <div
         className={styles.item}
         style={{

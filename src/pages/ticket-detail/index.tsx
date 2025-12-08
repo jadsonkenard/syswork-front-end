@@ -5,7 +5,7 @@ import { getTicketById } from "../../services/ReportService";
 import { useEffect, useState } from "react";
 import { notify } from "../../services/notification";
 import { statusLabels, type ReportItem } from "../../types/ReportProps";
-import { TicketUpdateStatus } from "../../services/TicketService";
+import {ticketUpdateStatus } from "../../services/TicketService";
 import { formatDate } from "../../utils/formatDate";
 
 export default function TicketDetail() {
@@ -18,7 +18,7 @@ export default function TicketDetail() {
   async function updateStatus(id: number, currentStatus: string) {
     const nextStatus = getNextStatus(currentStatus);
     try {
-      const response = await TicketUpdateStatus(id, nextStatus);
+      const response = await ticketUpdateStatus(id, nextStatus);
       console.log(response);
       setTicket([response]);
       setLoading(false);
