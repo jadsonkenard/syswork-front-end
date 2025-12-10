@@ -40,6 +40,7 @@ export async function ticketUpdateStatus(id: number, status: string) {
       credentials: "include",
       body: JSON.stringify({ status }),
     });
+
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(

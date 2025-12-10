@@ -73,6 +73,7 @@ export default function NewTicket() {
       console.log(response);
       notify("success", "Sucesso.");
       setForm({ title: "", description: "", executor_department_id: 0 });
+      setErrors("");
     } catch (error: any) {
       setErrors(error.message || "Erro inesperado");
       setLoading(false);

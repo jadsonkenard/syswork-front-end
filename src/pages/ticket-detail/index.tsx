@@ -18,12 +18,12 @@ export default function TicketDetail() {
   async function updateStatus(id: number, currentStatus: string) {
     const nextStatus = getNextStatus(currentStatus);
     try {
-      const response = await ticketUpdateStatus(id, nextStatus);
-      console.log(response);
-      setTicket([response]);
+      await ticketUpdateStatus(id, nextStatus);
+      const updated = await getTicketById(id);
+
+      setTicket([updated]);
       setLoading(false);
       notify("success", "Sucesso.");
-      console.log("deu certo");
     } catch (error) {
       if (typeof error === "string") {
         notify("warning", error);
@@ -46,12 +46,12 @@ export default function TicketDetail() {
         return "done";
 
       default:
-        return currentStatus; // ou lance erro se preferir
+        return currentStatus;
     }
   }
 
   useEffect(() => {
-    async function getTicketsId() {
+    async function getTicketId() {
       try {
         const response = await getTicketById(id);
         console.log(response);
@@ -70,7 +70,7 @@ export default function TicketDetail() {
         }
       }
     }
-    getTicketsId();
+    getTicketId();
   }, [id]);
 
   return (
