@@ -3,10 +3,21 @@ import { Button } from "../index";
 import SidebarOption from "../sidebar-option";
 import styles from "./Sidebar.module.css";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { notify } from "../../services/notification";
 
 export default function Sidebar() {
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const { user } = useAuth();
+
+  function navAdmin(route: string) {
+    if (user?.role === "user") {
+      notify("error", "Acesso negado. Requer permissão de administrador.");
+      return;
+    }
+    navigate(route);
+  }
 
   return (
     <div>
@@ -16,7 +27,7 @@ export default function Sidebar() {
           <Button
             title="Novo chamado"
             onClick={() => navigate("/newticket")}
-            isLoading={loading}
+            isLoading={false}
             height="55px"
             width="240px"
           />
@@ -34,12 +45,12 @@ export default function Sidebar() {
         <SidebarOption
           iconName="management"
           title="Gerenciamento de unidade"
-          onClick={() => navigate("/management")}
+          onClick={() => navAdmin("/management")}
         />
         <SidebarOption
           iconName="user"
           title="Usuários"
-          onClick={() => navigate("/user-management")}
+          onClick={() => navAdmin("/user-management")}
         />
       </aside>
     </div>
