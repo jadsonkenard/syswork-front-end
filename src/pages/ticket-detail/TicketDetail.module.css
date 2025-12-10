@@ -14,6 +14,11 @@ body {
 }
 
 .nav {
-  height: auto;
   min-height: 600px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }

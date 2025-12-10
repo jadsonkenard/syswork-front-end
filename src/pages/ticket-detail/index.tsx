@@ -79,7 +79,7 @@ export default function TicketDetail() {
       <LoadingOverlay isLoading={loading} />
       <nav className={styles.nav}>
         {(ticket ?? []).map((item) => (
-          <div key={item.id}>
+          <div key={item.id} className={styles.item}>
             <Button
               title={
                 item.status === "open"

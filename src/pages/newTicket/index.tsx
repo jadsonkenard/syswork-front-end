@@ -1,11 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import { Button, Input, LoadingOverlay } from "../../components";
+import { Button, Input, Label, LoadingOverlay } from "../../components";
 import { useAuth } from "../../hooks/useAuth";
 import styles from "./NewTicket.module.css";
 import type { NewTicketForm } from "../../types/newTicket";
 import { NewTicketStore } from "../../services/TicketService";
 import { notify } from "../../services/notification";
+import { Select } from "../../components";
+
+const userTypes = [
+  { value: "user", label: "Usuário" },
+  { value: "admin", label: "Administrador" },
+];
 
 export default function NewTicket() {
   const [loading, setLoading] = useState(false);
@@ -64,13 +70,19 @@ export default function NewTicket() {
     }
     setLoading(false);
   }
+
   return (
     <div className={styles.container}>
       <LoadingOverlay isLoading={loading} />
       <h3>Novo chamado</h3>
-      <p>Nome: {user?.username}</p>
-      <p>Setor: {user?.department_id}</p>
       <form onSubmit={handleSubmit} className={styles.form}>
+        <Label
+          iconName="userCheck"
+          title="Usuário solicitante"
+          value={user?.username as string}
+          width="600px"
+          height="55px"
+        />
         <div className={styles.field}>
           <Input
             name="title"
@@ -78,31 +90,39 @@ export default function NewTicket() {
             placeholder="Título"
             value={form.title}
             onChange={handleChange}
+            width="600px"
+            height="55px"
           />
         </div>
         <div className={styles.field}>
           <Input
             name="description"
-            iconName="info"
+            iconName="question"
             placeholder="Descrição"
             value={form.description}
             onChange={handleChange}
+            width="600px"
+            height="55px"
           />
         </div>
         <div className={styles.field}>
           <Input
             name="executor_department_id"
-            iconName="info"
+            iconName="department2"
             placeholder="Descrição"
             value={form.executor_department_id}
             onChange={handleChange}
+            width="600px"
+            height="55px"
           />
         </div>
+        <Select title="Setor executante" width="600px" height="55px" options={userTypes}/>
+
         <Button
           title="Entrar"
           isLoading={loading}
           height="55px"
-          width="450px"
+          width="600px"
           type="submit"
           disabled={loading ? true : false}
         />

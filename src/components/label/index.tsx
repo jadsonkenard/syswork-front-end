@@ -6,6 +6,8 @@ type LabelProps = {
   title: string;
   value: string | number;
   valueColor?: string;
+  width?: string;
+  height?: string;
 };
 
 export default function Label({
@@ -13,9 +15,17 @@ export default function Label({
   title,
   value,
   valueColor,
+  width,
+  height,
 }: LabelProps) {
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      style={{
+        ["--btn-width" as string]: width,
+        ["--btn-height" as string]: height,
+      }}
+    >
       <div>
         <DynamicIcon iconName={iconName} color="var(--neutral-500)" size={25} />
       </div>

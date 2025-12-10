@@ -59,6 +59,7 @@ export default function Login() {
       const user = await authService.login(form.username, form.password);
 
       setUser(user);
+      localStorage.setItem("user", JSON.stringify(user));
       navigate("/");
     } catch (error: any) {
       setErrors(error.message || "Erro inesperado");

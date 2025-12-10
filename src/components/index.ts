@@ -7,6 +7,7 @@ import { LoadingOverlay } from "./loading-overlay";
 import ModalId from "./modal-id";
 import Label from "./label";
 import Card from "./card";
+import Select from "./select";
 
 export {
   Layout,
@@ -18,4 +19,5 @@ export {
   ModalId,
   Label,
   Card,
+  Select,
 };
