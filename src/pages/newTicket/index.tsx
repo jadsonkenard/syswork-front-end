@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Input, Label, LoadingOverlay } from "../../components";
 import { useAuth } from "../../hooks/useAuth";
 import styles from "./NewTicket.module.css";
@@ -7,14 +7,11 @@ import type { NewTicketForm } from "../../types/newTicket";
 import { NewTicketStore } from "../../services/TicketService";
 import { notify } from "../../services/notification";
 import { Select } from "../../components";
-
-const userTypes = [
-  { value: "user", label: "Usuário" },
-  { value: "admin", label: "Administrador" },
-];
+import { getAllDepartments } from "../../services/DepartmentService";
 
 export default function NewTicket() {
   const [loading, setLoading] = useState(false);
+  const [loadDepartments, setLoadDepartments] = useState([]);
   const [errors, setErrors] = useState<string>("");
   const [form, setForm] = useState<NewTicketForm>({
     title: "",
@@ -22,6 +19,23 @@ export default function NewTicket() {
     executor_department_id: 0,
   });
   const { user } = useAuth();
+
+  useEffect(() => {
+    async function loadDepartment() {
+      try {
+        const response = await getAllDepartments();
+        console.log(response);
+        setLoadDepartments(response);
+      } catch (error) {
+        if (typeof error === "string") {
+          console.log(error);
+        } else if (error instanceof Error) {
+          console.log(error.message);
+        }
+      }
+    }
+    loadDepartment();
+  }, []);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -44,11 +58,6 @@ export default function NewTicket() {
     }
     if (!form.description.trim()) {
       setErrors("Descrição do chamado é obrigatório");
-      setLoading(false);
-      return;
-    }
-    if (!form.executor_department_id) {
-      setErrors("Informe o setor executante");
       setLoading(false);
       return;
     }
@@ -105,21 +114,26 @@ export default function NewTicket() {
             height="55px"
           />
         </div>
-        <div className={styles.field}>
-          <Input
-            name="executor_department_id"
-            iconName="department2"
-            placeholder="Descrição"
-            value={form.executor_department_id}
-            onChange={handleChange}
-            width="600px"
-            height="55px"
-          />
-        </div>
-        <Select title="Setor executante" width="600px" height="55px" options={userTypes}/>
+        <Select
+          name="executor_department_id"
+          value={form.executor_department_id}
+          title="Setor executante"
+          width="600px"
+          height="55px"
+          onChange={(e) =>
+            setForm((prev) => ({
+              ...prev,
+              executor_department_id: Number(e.target.value),
+            }))
+          }
+          options={loadDepartments.map((d: any) => ({
+            value: d.id,
+            label: d.name,
+          }))}
+        />
 
         <Button
-          title="Entrar"
+          title="Salvar"
           isLoading={loading}
           height="55px"
           width="600px"
