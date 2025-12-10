@@ -82,8 +82,6 @@ export default function Login() {
             onChange={handleChange}
           />
         </div>
-
-        {/* Password */}
         <div className={styles.field}>
           <Input
             name="password"
@@ -100,7 +98,7 @@ export default function Login() {
           height="55px"
           width="450px"
           type="submit"
-          onClick={() => console.log("Clicou.")}
+          // onClick={() => console.log("Clicou.")}
           disabled={loading ? true : false}
         />
         <p className={styles.error}>{errors}</p>

@@ -14,6 +14,7 @@ import {
   TicketsByIdUser,
   TicketsByIdRequester,
   TicketsByIdExecutor,
+  NewTicket
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
           {
             element: <Home />,
             path: "/",
+          },
+          {
+            element: <NewTicket />,
+            path: "/newticket",
           },
           {
             element: <TicketDetail />,

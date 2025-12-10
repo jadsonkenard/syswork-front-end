@@ -1,0 +1,113 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "react";
+import { Button, Input, LoadingOverlay } from "../../components";
+import { useAuth } from "../../hooks/useAuth";
+import styles from "./NewTicket.module.css";
+import type { NewTicketForm } from "../../types/newTicket";
+import { NewTicketStore } from "../../services/TicketService";
+import { notify } from "../../services/notification";
+
+export default function NewTicket() {
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<string>("");
+  const [form, setForm] = useState<NewTicketForm>({
+    title: "",
+    description: "",
+    executor_department_id: 0,
+  });
+  const { user } = useAuth();
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    setErrors("");
+  }
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    if (!form.title.trim()) {
+      setErrors("Título do chamado é obrigatório");
+      setLoading(false);
+      return;
+    }
+    if (!form.description.trim()) {
+      setErrors("Descrição do chamado é obrigatório");
+      setLoading(false);
+      return;
+    }
+    if (!form.executor_department_id) {
+      setErrors("Informe o setor executante");
+      setLoading(false);
+      return;
+    }
+
+    console.log(form.title, form.description, form.executor_department_id);
+    handleLogin();
+    setLoading(true);
+  }
+
+  async function handleLogin() {
+    try {
+      const response = await NewTicketStore(form);
+      console.log(response);
+      notify("success", "Sucesso.");
+      setForm({ title: "", description: "", executor_department_id: 0 });
+    } catch (error: any) {
+      setErrors(error.message || "Erro inesperado");
+      setLoading(false);
+    }
+    setLoading(false);
+  }
+  return (
+    <div className={styles.container}>
+      <LoadingOverlay isLoading={loading} />
+      <h3>Novo chamado</h3>
+      <p>Nome: {user?.username}</p>
+      <p>Setor: {user?.department_id}</p>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.field}>
+          <Input
+            name="title"
+            iconName="info"
+            placeholder="Título"
+            value={form.title}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styles.field}>
+          <Input
+            name="description"
+            iconName="info"
+            placeholder="Descrição"
+            value={form.description}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styles.field}>
+          <Input
+            name="executor_department_id"
+            iconName="info"
+            placeholder="Descrição"
+            value={form.executor_department_id}
+            onChange={handleChange}
+          />
+        </div>
+        <Button
+          title="Entrar"
+          isLoading={loading}
+          height="55px"
+          width="450px"
+          type="submit"
+          disabled={loading ? true : false}
+        />
+        <p className={styles.error}>{errors}</p>
+      </form>
+    </div>
+  );
+}
