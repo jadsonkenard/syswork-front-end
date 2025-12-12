@@ -38,7 +38,7 @@ export default function Management() {
           onClick={() => navigate("/positions/all")}
         >
           <DynamicIcon
-            iconName="report2"
+            iconName="bookmark"
             color="var(--neutral-500)"
             size={80}
           />
@@ -51,7 +51,7 @@ export default function Management() {
           }
         >
           <DynamicIcon
-            iconName="report3"
+            iconName="bookmarkCheck"
             color="var(--neutral-500)"
             size={80}
           />
@@ -62,7 +62,7 @@ export default function Management() {
           onClick={() => navigate("/position/newposition")}
         >
           <DynamicIcon
-            iconName="report3"
+            iconName="bookmarkPlus"
             color="var(--neutral-500)"
             size={80}
           />

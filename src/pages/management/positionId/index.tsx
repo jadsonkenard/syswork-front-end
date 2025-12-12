@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { LoadingOverlay } from "../../../components";
 import { formatDate } from "../../../utils/formatDate";
 import styles from "./PositonId.module.css";
@@ -11,8 +11,16 @@ import { formatBRL } from "../../../utils/formatBRL";
 export default function PositionId() {
   const [loading, setLoading] = useState(false);
   const [position, setPosition] = useState<Position[]>([]);
+
+  const navigate = useNavigate();
   const { state } = useLocation();
   const id = state?.id;
+
+  function handlePosition(id: number) {
+    navigate("/position/positiondetail", {
+      state: { id },
+    });
+  }
 
   useEffect(() => {
     async function load() {
@@ -59,7 +67,7 @@ export default function PositionId() {
 
         <tbody>
           {position.map((item) => (
-            <tr key={item.id}>
+            <tr key={item.id} onClick={() => handlePosition(item.id)}>
               <td>{item.id}</td>
               <td>{item.name}</td>
               <td>{formatBRL(item.salary)}</td>

@@ -74,7 +74,7 @@ export default function PositionDetail() {
                 title="Atualizar"
                 isLoading={false}
                 backgroundColor="var(--info-dark)"
-                onClick={() => handleDelete(item.id)}
+                onClick={() => {}}
               />
               <Button
                 title="Deletar"

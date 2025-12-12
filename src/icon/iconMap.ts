@@ -22,4 +22,9 @@ export const iconMap: Record<string, Icons.LucideIcon> = {
   time2: Icons.ClockFading,
   question: Icons.BadgeQuestionMark,
   money: Icons.CircleDollarSign,
+  bookmark: Icons.Bookmark,
+  bookmarkCheck: Icons.BookmarkCheck,
+  bookmarkPlus: Icons.BookmarkPlus,
+  bookmarkMinus: Icons.BookmarkMinus,
+  bookmarkX: Icons.BookmarkX,
 };
