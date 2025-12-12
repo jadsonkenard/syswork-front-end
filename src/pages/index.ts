@@ -13,6 +13,7 @@ import TicketsByIdRequester from "./reportsDetails/ticketsByIdRequester";
 import TicketsByIdExecutor from "./reportsDetails/ticketsByIdExecutor";
 import NewTicket from "./newTicket";
 import AllPositions from "./management/allPositions";
+import PositionId from "./management/positionId";
 
 export {
   Home,
@@ -30,4 +31,5 @@ export {
   TicketsByIdExecutor,
   NewTicket,
   AllPositions,
+  PositionId
 };
