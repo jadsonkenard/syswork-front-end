@@ -42,18 +42,31 @@ export default function Management() {
             color="var(--neutral-500)"
             size={80}
           />
-          <p className={styles["box-text"]}>Buscar todos os setores</p>
+          <p className={styles["box-text"]}>Buscar todas as funções</p>
         </div>
         <div
           className={styles["box-item"]}
-          onClick={() => openModal("/position/positionbyid", "Informe o ID do setor")}
+          onClick={() =>
+            openModal("/position/positionbyid", "Informe o ID do setor")
+          }
         >
           <DynamicIcon
             iconName="report3"
             color="var(--neutral-500)"
             size={80}
           />
-          <p className={styles["box-text"]}>Buscar setor por ID</p>
+          <p className={styles["box-text"]}>Buscar função por ID</p>
+        </div>
+        <div
+          className={styles["box-item"]}
+          onClick={() => navigate("/position/newposition")}
+        >
+          <DynamicIcon
+            iconName="report3"
+            color="var(--neutral-500)"
+            size={80}
+          />
+          <p className={styles["box-text"]}>Nova função</p>
         </div>
       </section>
       <ModalId

@@ -6,6 +6,7 @@ import styles from "./PositonId.module.css";
 import type { Position } from "../../../types/Position";
 import { notify } from "../../../services/notification";
 import { getPositionById } from "../../../services/PositionService";
+import { formatBRL } from "../../../utils/formatBRL";
 
 export default function PositionId() {
   const [loading, setLoading] = useState(false);
@@ -39,7 +40,7 @@ export default function PositionId() {
   return (
     <div className={styles.container}>
       <LoadingOverlay isLoading={loading} />
-      <h3>Todos os chamados</h3>
+      <h3>Função por ID</h3>
       <table
         border={1}
         cellPadding="8"
@@ -61,7 +62,7 @@ export default function PositionId() {
             <tr key={item.id}>
               <td>{item.id}</td>
               <td>{item.name}</td>
-              <td>{item.salary}</td>
+              <td>{formatBRL(item.salary)}</td>
               <td>{formatDate(item.createdAt)}</td>
               <td>{formatDate(item.updatedAt)}</td>
             </tr>

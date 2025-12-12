@@ -16,7 +16,8 @@ import {
   TicketsByIdExecutor,
   NewTicket,
   AllPositions,
-  PositionId
+  PositionId,
+  NewPosition,
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
@@ -92,6 +93,10 @@ export const router = createBrowserRouter([
           {
             element: <PositionId />,
             path: "/position/positionbyid",
+          },
+          {
+            element: <NewPosition />,
+            path: "/position/newposition",
           },
         ],
       },

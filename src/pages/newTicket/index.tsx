@@ -63,11 +63,11 @@ export default function NewTicket() {
     }
 
     console.log(form.title, form.description, form.executor_department_id);
-    handleLogin();
+    InsertNewTicket();
     setLoading(true);
   }
 
-  async function handleLogin() {
+  async function InsertNewTicket() {
     try {
       const response = await NewTicketStore(form);
       console.log(response);

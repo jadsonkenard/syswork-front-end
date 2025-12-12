@@ -5,3 +5,8 @@ export interface Position {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface NewPosition {
+  name: string;
+  salary: string;
+}

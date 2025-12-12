@@ -5,6 +5,7 @@ import styles from "./AllPositions.module.css";
 import type { Position } from "../../../types/Position";
 import { notify } from "../../../services/notification";
 import { getAllPositions } from "../../../services/PositionService";
+import { formatBRL } from "../../../utils/formatBRL";
 
 export default function AllPositions() {
   const [loading, setLoading] = useState(false);
@@ -42,7 +43,7 @@ export default function AllPositions() {
   return (
     <div className={styles.container}>
       <LoadingOverlay isLoading={loading} />
-      <h3>Todos os chamados</h3>
+      <h3>Todos as funções</h3>
       <table
         border={1}
         cellPadding="8"
@@ -64,7 +65,7 @@ export default function AllPositions() {
             <tr key={item.id}>
               <td>{item.id}</td>
               <td>{item.name}</td>
-              <td>{item.salary}</td>
+              <td>{formatBRL(item.salary)}</td>
               <td>{formatDate(item.createdAt)}</td>
               <td>{formatDate(item.updatedAt)}</td>
             </tr>
