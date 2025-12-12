@@ -13,12 +13,13 @@ export const iconMap: Record<string, Icons.LucideIcon> = {
   report5: Icons.BookText,
   report6: Icons.BookA,
   home: Icons.House,
-  id: Icons.IdCardLanyard,
+  id: Icons.PanelRightClose,
   info: Icons.BookType,
   status: Icons.CheckCheck,
   department1: Icons.Warehouse,
   department2: Icons.HousePlus,
   time1: Icons.ClockArrowUp,
   time2: Icons.ClockFading,
-  question: Icons.BadgeQuestionMark 
+  question: Icons.BadgeQuestionMark,
+  money: Icons.CircleDollarSign,
 };

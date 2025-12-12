@@ -76,3 +76,29 @@ export async function newPositionStore(newPosition: NewPosition) {
     throw error;
   }
 }
+
+export async function deletePositionById(id: number) {
+  try {
+    const response = await apiFetch(`${BASE_URL}/positions/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof TypeError && error.message.includes("fetch")) {
+      throw new Error("Servidor indisponível. Tente novamente mais tarde.");
+    }
+    console.error("Erro inesperado. ", error);
+    throw error;
+  }
+}

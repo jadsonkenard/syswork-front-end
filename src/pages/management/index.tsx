@@ -47,7 +47,7 @@ export default function Management() {
         <div
           className={styles["box-item"]}
           onClick={() =>
-            openModal("/position/positionbyid", "Informe o ID do setor")
+            openModal("/position/positionbyid", "Informe o ID da função")
           }
         >
           <DynamicIcon

@@ -18,6 +18,7 @@ import {
   AllPositions,
   PositionId,
   NewPosition,
+  PositionDetail,
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
@@ -97,6 +98,10 @@ export const router = createBrowserRouter([
           {
             element: <NewPosition />,
             path: "/position/newposition",
+          },
+          {
+            element: <PositionDetail />,
+            path: "/position/positiondetail",
           },
         ],
       },

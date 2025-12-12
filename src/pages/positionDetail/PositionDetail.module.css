@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.title {
+  color: var(--neutral-500);
+  margin: 0 0 20px 0;
+}
+
+.nav {
+  min-height: 600px;
+}
+
+.buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

@@ -15,6 +15,7 @@ import NewTicket from "./newTicket";
 import AllPositions from "./management/allPositions";
 import PositionId from "./management/positionId";
 import NewPosition from "./management/newPosition";
+import PositionDetail from "./positionDetail";
 
 export {
   Home,
@@ -34,4 +35,5 @@ export {
   AllPositions,
   PositionId,
   NewPosition,
+  PositionDetail,
 };

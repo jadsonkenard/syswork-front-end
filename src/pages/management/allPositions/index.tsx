@@ -6,6 +6,7 @@ import type { Position } from "../../../types/Position";
 import { notify } from "../../../services/notification";
 import { getAllPositions } from "../../../services/PositionService";
 import { formatBRL } from "../../../utils/formatBRL";
+import { useNavigate } from "react-router-dom";
 
 export default function AllPositions() {
   const [loading, setLoading] = useState(false);
@@ -13,6 +14,14 @@ export default function AllPositions() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);
   const [totalPages, setTotalPages] = useState(1);
+
+  const navigate = useNavigate();
+
+  function handlePosition(id: number) {
+    navigate("/position/positiondetail", {
+      state: { id },
+    });
+  }
 
   useEffect(() => {
     async function load() {
@@ -62,7 +71,7 @@ export default function AllPositions() {
 
         <tbody>
           {positions.map((item) => (
-            <tr key={item.id}>
+            <tr key={item.id} onClick={() => handlePosition(item.id)}>
               <td>{item.id}</td>
               <td>{item.name}</td>
               <td>{formatBRL(item.salary)}</td>
