@@ -17,7 +17,7 @@ export default function Management() {
             color="var(--neutral-500)"
             size={80}
           />
-          <p className={styles["box-text"]}>Buscar todos os chamados</p>
+          <p className={styles["box-text"]}>Buscar todos os setores</p>
         </div>
       </section>
     </div>

@@ -49,12 +49,12 @@ export default function TicketsId() {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Title</th>
-            <th>Description</th>
+            <th>Título</th>
+            <th>Descrição</th>
             <th>Status</th>
-            <th>Requester User ID</th>
-            <th>Requester Department ID</th>
-            <th>Executor Department ID</th>
+            <th>Usuário solicitante</th>
+            <th>Setor solicitante</th>
+            <th>Setor executante</th>
             <th>Criado em</th>
             <th>Atualizado em</th>
           </tr>
