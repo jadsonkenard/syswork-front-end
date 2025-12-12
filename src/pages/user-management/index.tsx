@@ -1,12 +1,13 @@
 import styles from "./User-management.module.css";
-import { getAllDepartments } from "../../services/DepartmentService";
+// import { getAllDepartments } from "../../services/DepartmentService";
+import { getAllPositions } from "../../services/PositionService";
 import { useEffect } from "react";
 
 export default function UserManagement() {
   useEffect(() => {
     async function load() {
       try {
-        const response = await getAllDepartments();
+        const response = await getAllPositions(1, 20);
         console.log(response);
       } catch (error) {
         if (typeof error === "string") {

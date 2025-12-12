@@ -14,7 +14,8 @@ import {
   TicketsByIdUser,
   TicketsByIdRequester,
   TicketsByIdExecutor,
-  NewTicket
+  NewTicket,
+  AllPositions,
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
@@ -82,6 +83,10 @@ export const router = createBrowserRouter([
           {
             element: <TicketsByIdExecutor />,
             path: "/ticket/ticketsbyidexecutor",
+          },
+          {
+            element: <AllPositions />,
+            path: "/positions/all",
           },
         ],
       },
