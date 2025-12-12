@@ -11,6 +11,10 @@
   background-color: var(--neutral-200);
 }
 
+.title {
+  color: var(--neutral-500);
+}
+
 .item {
   display: flex;
   flex-direction: column;

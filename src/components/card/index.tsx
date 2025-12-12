@@ -17,40 +17,40 @@ export default function Card({ onClick, statusColor, ...props }: ICard) {
         }}
       ></div>
       <div className={styles.item} style={{ width: "6%" }}>
-        <strong>ID</strong>
-        <p>{props.id}</p>
+        <strong className={styles.title}>ID</strong>
+        <strong>{props.id}</strong>
       </div>
       <div className={styles.item} style={{ width: "10%" }}>
-        <strong>Status</strong>
-        <p>{props.status}</p>
+        <strong className={styles.title}>Status</strong>
+        <strong>{props.status}</strong>
       </div>
       <div className={styles.item} style={{ width: "10%" }}>
-        <strong>Título</strong>
-        <p>{props.title}</p>
+        <strong className={styles.title}>Título</strong>
+        <strong>{props.title}</strong>
       </div>
       <div className={styles.item} style={{ width: "19%" }}>
-        <strong>Descrição</strong>
-        <p>{props.description}</p>
+        <strong className={styles.title}>Descrição</strong>
+        <strong>{props.description}</strong>
       </div>
       <div className={styles.item} style={{ width: "10%" }}>
-        <strong>Usuário</strong>
-        <p>{props.requester_user}</p>
+        <strong className={styles.title}>Usuário</strong>
+        <strong>{props.requester_user}</strong>
       </div>
       <div className={styles.item} style={{ width: "12%" }}>
-        <strong>Solicitante</strong>
-        <p>{props.requester_department}</p>
+        <strong className={styles.title}>Solicitante</strong>
+        <strong>{props.requester_department}</strong>
       </div>
       <div className={styles.item} style={{ width: "12%" }}>
-        <strong>Executante</strong>
-        <p>{props.executor_department}</p>
+        <strong className={styles.title}>Executante</strong>
+        <strong>{props.executor_department}</strong>
       </div>
       <div className={styles.item} style={{ width: "10%" }}>
-        <strong>Criado em</strong>
-        <p>{props.createdAt}</p>
+        <strong className={styles.title}>Criado em</strong>
+        <strong>{props.createdAt}</strong>
       </div>
       <div className={styles.item} style={{ width: "10%" }}>
-        <strong>Atualizado em</strong>
-        <p>{props.updatedAt}</p>
+        <strong className={styles.title}>Atualizado em</strong>
+        <strong>{props.updatedAt}</strong>
       </div>
     </div>
   );
