@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button } from "../index";
 import SidebarOption from "../sidebar-option";
 import styles from "./Sidebar.module.css";
