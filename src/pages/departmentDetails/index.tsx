@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Label, LoadingOverlay } from "../../components";
 import type { Department } from "../../types/Department";
 import { useEffect, useState } from "react";
@@ -6,13 +6,39 @@ import styles from "./DepartmentDetails.module.css";
 import { formatDate } from "../../utils/formatDate";
 import { getDepartmentById } from "../../services/DepartmentService";
 import { notify } from "../../services/notification";
+import { deleteDepartmentById } from "../../services/DepartmentService";
 
 export default function DepartmentDetail() {
   const [department, setDepartment] = useState<Department[]>([]);
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
   const { state } = useLocation();
   const id = state?.id;
+
+  async function handleDelete(id: number) {
+    setLoading(true);
+    try {
+      await deleteDepartmentById(id);
+      setLoading(false);
+      notify("success", "Função deletada com sucesso!.");
+      navigate("/department/all");
+    } catch (error) {
+      if (typeof error === "string") {
+        notify("warning", error);
+        setLoading(false);
+        console.log(error);
+      } else if (error instanceof Error) {
+        notify("warning", error.message);
+        setLoading(false);
+        console.log(error.message);
+      }
+    }
+  }
+
+  function handleDepartment(id: number) {
+    alert("update" + id);
+  }
 
   useEffect(() => {
     async function getDepartmentId() {
@@ -37,14 +63,6 @@ export default function DepartmentDetail() {
     }
     getDepartmentId();
   }, [id]);
-
-  function handleDepartment(id: number) {
-    alert("update" + id);
-  }
-
-  function handleDelete(id: number) {
-    alert("delete" + id);
-  }
 
   return (
     <div className={styles.container}>

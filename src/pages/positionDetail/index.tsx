@@ -39,10 +39,16 @@ export default function PositionDetail() {
     }
   }
 
+  function handlePosition(id: number) {
+    navigate("/position/positionupdate", {
+      state: { id },
+    });
+  }
+
   useEffect(() => {
     async function getPositionId() {
       try {
-        setLoading(true)
+        setLoading(true);
         const response = await getPositionById(id);
         console.log(response);
         setPosition([response]);
@@ -62,12 +68,6 @@ export default function PositionDetail() {
     }
     getPositionId();
   }, [id]);
-
-  function handlePosition(id: number) {
-    navigate("/position/positionupdate", {
-      state: { id },
-    });
-  }
 
   return (
     <div className={styles.container}>
