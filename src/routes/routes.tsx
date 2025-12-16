@@ -21,6 +21,7 @@ import {
   PositionDetail,
   PositionUpdate,
   AllDepartments,
+  DepartmentDetail,
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
@@ -112,6 +113,10 @@ export const router = createBrowserRouter([
           {
             element: <AllDepartments />,
             path: "/department/all",
+          },
+          {
+            element: <DepartmentDetail />,
+            path: "/department/departmentdetail",
           },
         ],
       },

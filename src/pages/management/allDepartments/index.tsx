@@ -5,10 +5,20 @@ import { formatDate } from "../../../utils/formatDate";
 import { getAllDepartments } from "../../../services/DepartmentService";
 import type { Department } from "../../../types/Department";
 import { notify } from "../../../services/notification";
+import { useNavigate } from "react-router-dom";
 
 export default function AllDepartments() {
   const [loading, setLoading] = useState(false);
   const [departments, setDepartments] = useState<Department[]>([]);
+
+  const navigate = useNavigate();
+
+  function handleDepartment(id: number) {
+    navigate("/department/departmentdetail", {
+      state: { id },
+    });
+  }
+
   useEffect(() => {
     async function load() {
       try {
@@ -53,7 +63,7 @@ export default function AllDepartments() {
 
         <tbody>
           {departments.map((item) => (
-            <tr key={item.id} onClick={() => {}}>
+            <tr key={item.id} onClick={() => handleDepartment(item.id)}>
               <td>{item.id}</td>
               <td>{item.name}</td>
               <td>{item.position?.name}</td>
