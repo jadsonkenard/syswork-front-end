@@ -62,6 +62,12 @@ export default function PositionDetail() {
     getPositionId();
   }, [id]);
 
+  function handleTicket(id: number) {
+    navigate("/position/positionupdate", {
+      state: { id },
+    });
+  }
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Detalhes função</h2>
@@ -74,7 +80,7 @@ export default function PositionDetail() {
                 title="Atualizar"
                 isLoading={false}
                 backgroundColor="var(--info-dark)"
-                onClick={() => {}}
+                onClick={() => handleTicket(item.id)}
               />
               <Button
                 title="Deletar"

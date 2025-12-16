@@ -10,3 +10,8 @@ export interface NewPosition {
   name: string;
   salary: string;
 }
+
+export interface UpdatePosition {
+  name: string;
+  salary: string;
+}

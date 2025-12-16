@@ -16,6 +16,7 @@ import AllPositions from "./management/allPositions";
 import PositionId from "./management/positionId";
 import NewPosition from "./management/newPosition";
 import PositionDetail from "./positionDetail";
+import PositionUpdate from "./management/PositionUpdate";
 
 export {
   Home,
@@ -36,4 +37,5 @@ export {
   PositionId,
   NewPosition,
   PositionDetail,
+  PositionUpdate,
 };

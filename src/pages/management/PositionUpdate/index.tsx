@@ -1,19 +1,49 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
-import { Button, Input, LoadingOverlay } from "../../../components";
-import type { NewPosition } from "../../../types/Position";
-import styles from "./NewPosition.module.css";
-import { newPositionStore } from "../../../services/PositionService";
+import { useLocation } from "react-router-dom";
+import styles from "./PositionUpdate.module.css";
+import { useEffect, useState } from "react";
+import { getPositionById } from "../../../services/PositionService";
 import { notify } from "../../../services/notification";
+import { Button, Input, Label } from "../../../components";
 import { formatSalary } from "../../../utils/formatSalary";
+import type { UpdatePosition } from "../../../types/Position";
+import { newPositionUpdate } from "../../../services/PositionService";
 
-export default function NewPosition() {
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<string>("");
-  const [form, setForm] = useState<NewPosition>({
+export default function PositionUpdate() {
+  const [form, setForm] = useState<UpdatePosition>({
     name: "",
     salary: "",
   });
+
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState("");
+  const { state } = useLocation();
+  const id = state?.id;
+
+  useEffect(() => {
+    async function getPositionId() {
+      try {
+        const response = await getPositionById(id);
+        console.log(response);
+        setForm({
+          name: response.name ?? "",
+          salary: response.salary ?? "",
+        });
+        setLoading(false);
+        notify("success", "Sucesso.");
+      } catch (error) {
+        setLoading(false);
+
+        if (typeof error === "string") {
+          notify("warning", error);
+        } else if (error instanceof Error) {
+          notify("warning", error.message);
+        }
+      }
+    }
+
+    getPositionId();
+  }, [id]);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -34,30 +64,19 @@ export default function NewPosition() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setLoading(true);
-    if (!form.name.trim()) {
-      setErrors("Insira o nome da função");
-      setLoading(false);
-      return;
-    }
-    if (!form.salary.trim()) {
-      setErrors("Informe o salário");
-      setLoading(false);
-      return;
-    }
-
+    insertPositionUpdate();
     console.log(form.name, form.salary);
-    insertNewPosition();
-    setLoading(true);
   }
 
-  async function insertNewPosition() {
+  async function insertPositionUpdate() {
     try {
-      const response = await newPositionStore(form);
+      setLoading(true);
+      const response = await newPositionUpdate(id, form);
       console.log(response);
       notify("success", "Sucesso.");
       setForm({ name: "", salary: "" });
       setErrors("");
+      setLoading(false);
     } catch (error: any) {
       setErrors(error.message || "Erro inesperado");
       setLoading(false);
@@ -67,9 +86,9 @@ export default function NewPosition() {
 
   return (
     <div className={styles.container}>
-      <LoadingOverlay isLoading={loading} />
-      <h3>Nova função</h3>
+      <h3 className={styles.title}>Atualizar função: {id}</h3>
       <form onSubmit={handleSubmit} className={styles.form}>
+        <Label iconName="id" title="ID" value={id} />
         <div className={styles.field}>
           <Input
             name="name"
