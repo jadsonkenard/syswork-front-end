@@ -17,6 +17,7 @@ export default function TicketDetail() {
 
   async function updateStatus(id: number, currentStatus: string) {
     const nextStatus = getNextStatus(currentStatus);
+    setLoading(true);
     try {
       await ticketUpdateStatus(id, nextStatus);
       const updated = await getTicketById(id);
@@ -52,6 +53,7 @@ export default function TicketDetail() {
 
   useEffect(() => {
     async function getTicketId() {
+      setLoading(true);
       try {
         const response = await getTicketById(id);
         console.log(response);

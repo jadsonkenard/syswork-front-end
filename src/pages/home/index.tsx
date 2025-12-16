@@ -24,6 +24,7 @@ export default function Home() {
 
   useEffect(() => {
     async function load() {
+      setLoading(true)
       try {
         const response = await getTicketsMyDepartmentExecutor(page, limit);
         console.log(response);
