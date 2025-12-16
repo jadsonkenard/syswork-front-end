@@ -28,4 +28,5 @@ export const iconMap: Record<string, Icons.LucideIcon> = {
   bookmarkMinus: Icons.BookmarkMinus,
   bookmarkX: Icons.BookmarkX,
   filePenLine: Icons.FilePenLine,
+  warehouse: Icons.Warehouse
 };
