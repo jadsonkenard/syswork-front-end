@@ -81,7 +81,7 @@ export default function PositionDetail() {
               <Button
                 title="Atualizar"
                 isLoading={false}
-                backgroundColor="var(--info-dark)"
+                backgroundColor="var(--neutral-600)"
                 onClick={() => handlePosition(item.id)}
               />
               <Button

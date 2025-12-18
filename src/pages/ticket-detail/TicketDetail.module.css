@@ -27,3 +27,8 @@ body {
   display: flex;
   gap: 5px;
 }
+
+.buttons-admin {
+  display: flex;
+  gap: 5px;
+}

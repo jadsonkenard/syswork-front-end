@@ -78,7 +78,7 @@ export default function DepartmentDetail() {
               <Button
                 title="Atualizar"
                 isLoading={false}
-                backgroundColor="var(--info-dark)"
+                backgroundColor="var(--neutral-600)"
                 onClick={() => handleDepartment(item.id)}
               />
               <Button

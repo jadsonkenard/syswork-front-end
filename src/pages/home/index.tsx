@@ -68,7 +68,7 @@ export default function Home() {
             updatedAt={formatDate(item.updatedAt)}
             statusColor={
               item.status === "open"
-                ? "var(--error-dark)"
+                ? "var(--warning-main)"
                 : item.status === "in progress"
                 ? "var(--info-dark)"
                 : "var(--primary-dark)"

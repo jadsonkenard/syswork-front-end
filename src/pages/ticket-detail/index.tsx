@@ -95,7 +95,7 @@ export default function TicketDetail() {
                 }
                 backgroundColor={
                   item.status === "open"
-                    ? "var(--error-dark)"
+                    ? "var(--warning-main)"
                     : item.status === "in progress"
                     ? "var(--info-dark)"
                     : "var(--primary-dark)"
@@ -104,12 +104,20 @@ export default function TicketDetail() {
                 onClick={() => updateStatus(item.id, item.status)}
               />
               {user?.role === "admin" && (
-                <Button
-                  title="Editar"
-                  backgroundColor="var(--info-dark)"
-                  isLoading={false}
-                  onClick={() => alert(`Editar chamado com id: ${item.id}`)}
-                />
+                <div className={styles["buttons-admin"]}>
+                  <Button
+                    title="Editar"
+                    backgroundColor="var(--neutral-600)"
+                    isLoading={false}
+                    onClick={() => alert(`Editar chamado com id: ${item.id}`)}
+                  />
+                  <Button
+                    title="Deletar"
+                    backgroundColor="var(--error-dark)"
+                    isLoading={false}
+                    onClick={() => alert(`Deletar chamado com id: ${item.id}`)}
+                  />
+                </div>
               )}
             </div>
             <Label iconName="id" title="ID" value={`#${item.id}`} />
