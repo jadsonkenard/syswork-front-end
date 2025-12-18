@@ -17,7 +17,7 @@ export default function NewDepartment() {
   });
 
   useEffect(() => {
-    async function loadDepartment() {
+    async function loadPositions() {
       try {
         const response = await getAllPositions(1, 1000);
         console.log(response);
@@ -30,7 +30,7 @@ export default function NewDepartment() {
         }
       }
     }
-    loadDepartment();
+    loadPositions();
   }, []);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -52,7 +52,6 @@ export default function NewDepartment() {
       setLoading(false);
       return;
     }
-    console.log(form.name);
     insertNewDepartment();
     setLoading(true);
   }
