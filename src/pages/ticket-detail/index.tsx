@@ -7,6 +7,7 @@ import { notify } from "../../services/notification";
 import { statusLabels, type ReportItem } from "../../types/ReportProps";
 import { ticketUpdateStatus } from "../../services/TicketService";
 import { formatDate } from "../../utils/formatDate";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function TicketDetail() {
   const { state } = useLocation();
@@ -14,6 +15,7 @@ export default function TicketDetail() {
   const [loading, setLoading] = useState(false);
 
   const id = state?.id;
+  const { user } = useAuth();
 
   async function updateStatus(id: number, currentStatus: string) {
     const nextStatus = getNextStatus(currentStatus);
@@ -82,24 +84,34 @@ export default function TicketDetail() {
       <nav className={styles.nav}>
         {(ticket ?? []).map((item) => (
           <div key={item.id} className={styles.item}>
-            <Button
-              title={
-                item.status === "open"
-                  ? "Assumir"
-                  : item.status === "in progress"
-                  ? "Finalizar"
-                  : "Concluído"
-              }
-              backgroundColor={
-                item.status === "open"
-                  ? "var(--error-dark)"
-                  : item.status === "in progress"
-                  ? "var(--info-dark)"
-                  : "var(--primary-dark)"
-              }
-              isLoading={false}
-              onClick={() => updateStatus(item.id, item.status)}
-            />
+            <div className={styles.buttons}>
+              <Button
+                title={
+                  item.status === "open"
+                    ? "Assumir"
+                    : item.status === "in progress"
+                    ? "Finalizar"
+                    : "Concluído"
+                }
+                backgroundColor={
+                  item.status === "open"
+                    ? "var(--error-dark)"
+                    : item.status === "in progress"
+                    ? "var(--info-dark)"
+                    : "var(--primary-dark)"
+                }
+                isLoading={false}
+                onClick={() => updateStatus(item.id, item.status)}
+              />
+              {user?.role === "admin" && (
+                <Button
+                  title="Editar"
+                  backgroundColor="var(--info-dark)"
+                  isLoading={false}
+                  onClick={() => alert(`Editar chamado com id: ${item.id}`)}
+                />
+              )}
+            </div>
             <Label iconName="id" title="ID" value={`#${item.id}`} />
             <Label
               iconName="userCheck"

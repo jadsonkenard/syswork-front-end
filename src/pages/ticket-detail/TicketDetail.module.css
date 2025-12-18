@@ -22,3 +22,8 @@ body {
   flex-direction: column;
   gap: 15px;
 }
+
+.buttons {
+  display: flex;
+  gap: 5px;
+}
