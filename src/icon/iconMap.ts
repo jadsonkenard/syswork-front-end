@@ -30,4 +30,5 @@ export const iconMap: Record<string, Icons.LucideIcon> = {
   filePenLine: Icons.FilePenLine,
   warehouse: Icons.Warehouse,
   filePlus: Icons.FilePlus,
+  housePlus: Icons.HousePlus
 };

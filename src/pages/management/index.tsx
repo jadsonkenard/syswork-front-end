@@ -84,7 +84,7 @@ export default function Management() {
           onClick={() => navigate("/department/newdepartment")}
         >
           <DynamicIcon
-            iconName="filePlus"
+            iconName="housePlus"
             color="var(--neutral-500)"
             size={80}
           />

@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./PositionDetail.module.css";
-import { Button, Label, LoadingOverlay } from "../../components";
+import { Button, Label, LoadingOverlay, ConfirmModal } from "../../components";
 import { useEffect, useState } from "react";
 import {
   getPositionById,
@@ -14,6 +14,7 @@ import { formatBRL } from "../../utils/formatBRL";
 export default function PositionDetail() {
   const [loading, setLoading] = useState(false);
   const [position, setPosition] = useState<Position[]>([]);
+  const [openConfirm, setOpenConfirm] = useState(false);
 
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -87,7 +88,7 @@ export default function PositionDetail() {
                 title="Deletar"
                 isLoading={false}
                 backgroundColor="var(--error-dark)"
-                onClick={() => handleDelete(item.id)}
+                onClick={() => setOpenConfirm(true)}
               />
             </div>
             <Label iconName="id" title="ID" value={item.id} />
@@ -106,6 +107,15 @@ export default function PositionDetail() {
               iconName="time2"
               title="Atualizado em"
               value={formatDate(item.updatedAt)}
+            />
+            <ConfirmModal
+              open={openConfirm}
+              title="Excluir função"
+              description="Esta ação não poderá ser desfeita. Deseja continuar?"
+              confirmText="Excluir"
+              onConfirm={() => handleDelete(item.id)}
+              onCancel={() => setOpenConfirm(false)}
+              loading={loading}
             />
           </div>
         ))}

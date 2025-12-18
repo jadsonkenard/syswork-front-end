@@ -8,6 +8,7 @@ import ModalId from "./modal-id";
 import Label from "./label";
 import Card from "./card";
 import Select from "./select";
+import { ConfirmModal } from "./confirm-modal";
 
 export {
   Layout,
@@ -20,4 +21,5 @@ export {
   Label,
   Card,
   Select,
+  ConfirmModal,
 };
