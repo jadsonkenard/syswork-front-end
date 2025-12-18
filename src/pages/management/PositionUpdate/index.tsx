@@ -86,7 +86,7 @@ export default function PositionUpdate() {
 
   return (
     <div className={styles.container}>
-      <h3 className={styles.title}>Atualizar função: {id}</h3>
+      <h3 className={styles.title}>Atualizar função</h3>
       <form onSubmit={handleSubmit} className={styles.form}>
         <Label iconName="id" title="ID" value={id} />
         <div className={styles.field}>

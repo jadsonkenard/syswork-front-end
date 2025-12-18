@@ -23,6 +23,7 @@ import {
   AllDepartments,
   DepartmentDetail,
   NewDepartment,
+  DepartmentUpdate,
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
@@ -122,6 +123,10 @@ export const router = createBrowserRouter([
           {
             element: <NewDepartment />,
             path: "/department/newdepartment",
+          },
+          {
+            element: <DepartmentUpdate />,
+            path: "/department/departmentupdate",
           },
         ],
       },

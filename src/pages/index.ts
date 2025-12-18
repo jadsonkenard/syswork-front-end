@@ -20,6 +20,7 @@ import PositionUpdate from "./management/PositionUpdate";
 import AllDepartments from "./management/allDepartments";
 import DepartmentDetail from "./departmentDetails";
 import NewDepartment from "./management/newDepartment";
+import DepartmentUpdate from "./management/departmentUpdate";
 
 export {
   Home,
@@ -43,5 +44,6 @@ export {
   PositionUpdate,
   AllDepartments,
   DepartmentDetail,
-  NewDepartment
+  NewDepartment,
+  DepartmentUpdate,
 };

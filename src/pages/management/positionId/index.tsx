@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LoadingOverlay } from "../../../components";
@@ -35,10 +36,12 @@ export default function PositionId() {
           notify("warning", error);
           setLoading(false);
           console.log(error);
+          navigate("/management");
         } else if (error instanceof Error) {
           notify("warning", error.message);
           setLoading(false);
           console.log(error.message);
+          navigate("/management");
         }
       }
     }
