@@ -6,6 +6,7 @@ import { Button } from "../../../components";
 import { notify } from "../../../services/notification";
 import { LoadingOverlay } from "../../../components";
 import { formatDate } from "../../../utils/formatDate";
+import { useNavigate } from "react-router-dom";
 
 export default function AllTickets() {
   const [loading, setLoading] = useState(false);
@@ -13,6 +14,14 @@ export default function AllTickets() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);
   const [totalPages, setTotalPages] = useState(1);
+
+  const navigate = useNavigate();
+
+  function handleTicket(id: number) {
+    navigate("/ticketdetail", {
+      state: { id },
+    });
+  }
 
   useEffect(() => {
     async function load() {
@@ -67,7 +76,7 @@ export default function AllTickets() {
 
         <tbody>
           {tickets.map((item) => (
-            <tr key={item.id}>
+            <tr key={item.id} onClick={() => handleTicket(item.id)}>
               <td>{item.id}</td>
               <td>{item.title}</td>
               <td>{item.description}</td>

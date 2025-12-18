@@ -6,12 +6,21 @@ import { LoadingOverlay } from "../../../components";
 import styles from "./TicketsId.module.css";
 import { statusLabels, type ReportItem } from "../../../types/ReportProps";
 import { formatDate } from "../../../utils/formatDate";
+import { useNavigate } from "react-router-dom";
 
 export default function TicketsId() {
   const [loading, setLoading] = useState(false);
   const [ticket, setTicket] = useState<ReportItem[]>([]);
+
+  const navigate = useNavigate();
   const { state } = useLocation();
   const id = state?.id;
+
+  function handleTicket(id: number) {
+    navigate("/ticketdetail", {
+      state: { id },
+    });
+  }
 
   useEffect(() => {
     async function getTicketsId() {
@@ -62,7 +71,7 @@ export default function TicketsId() {
 
         <tbody>
           {ticket.map((item) => (
-            <tr key={item.id}>
+            <tr key={item.id} onClick={() => handleTicket(item.id)}>
               <td>{item.id}</td>
               <td>{item.title}</td>
               <td>{item.description}</td>
