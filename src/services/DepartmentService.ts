@@ -1,4 +1,5 @@
 import { BASE_URL } from "../config/api";
+import type { NewDepartment } from "../types/Department";
 import { apiFetch } from "./apiFetch";
 
 export async function getAllDepartments() {
@@ -28,6 +29,34 @@ export async function getDepartmentById(id: number) {
       },
       credentials: "include",
     });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof TypeError && error.message.includes("fetch")) {
+      throw new Error("Servidor indisponível. Tente novamente mais tarde.");
+    }
+    console.error("Erro inesperado. ", error);
+    throw error;
+  }
+}
+
+export async function newDepartmentStore(newDepartment: NewDepartment) {
+  try {
+    const response = await apiFetch(`${BASE_URL}/department`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(newDepartment),
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        errorData.error || errorData.message || "Erro desconhecido"
+      );
+    }
+
     const data = await response.json();
     return data;
   } catch (error) {

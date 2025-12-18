@@ -79,6 +79,17 @@ export default function Management() {
           />
           <p className={styles["box-text"]}>Buscar setores</p>
         </div>
+        <div
+          className={styles["box-item"]}
+          onClick={() => navigate("/department/newdepartment")}
+        >
+          <DynamicIcon
+            iconName="filePlus"
+            color="var(--neutral-500)"
+            size={80}
+          />
+          <p className={styles["box-text"]}>Novo setor</p>
+        </div>
       </section>
       <ModalId
         isOpen={isOpen}
