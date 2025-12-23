@@ -6,6 +6,7 @@ import styles from "./NewPosition.module.css";
 import { newPositionStore } from "../../../services/PositionService";
 import { notify } from "../../../services/notification";
 import { formatSalary } from "../../../utils/formatSalary";
+import { useNavigate } from "react-router-dom";
 
 export default function NewPosition() {
   const [loading, setLoading] = useState(false);
@@ -65,6 +66,12 @@ export default function NewPosition() {
     setLoading(false);
   }
 
+  const navigate = useNavigate();
+
+  function goBack() {
+    navigate("/management");
+  }
+
   return (
     <div className={styles.container}>
       <LoadingOverlay isLoading={loading} />
@@ -99,6 +106,15 @@ export default function NewPosition() {
           width="600px"
           type="submit"
           disabled={loading ? true : false}
+        />
+        <Button
+          title="Cancelar"
+          isLoading={loading}
+          height="55px"
+          width="600px"
+          onClick={goBack}
+          disabled={loading ? true : false}
+          backgroundColor="var(--neutral-400)"
         />
         <p className={styles.error}>{errors}</p>
       </form>

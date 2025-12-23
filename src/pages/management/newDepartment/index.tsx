@@ -6,6 +6,7 @@ import { newDepartmentStore } from "../../../services/DepartmentService";
 import { notify } from "../../../services/notification";
 import styles from "./NewDepartment.module.css";
 import { getAllPositions } from "../../../services/PositionService";
+import { useNavigate } from "react-router-dom";
 
 export default function NewDepartment() {
   const [loading, setLoading] = useState(false);
@@ -54,6 +55,12 @@ export default function NewDepartment() {
     }
     insertNewDepartment();
     setLoading(true);
+  }
+
+  const navigate = useNavigate();
+
+  function goBack() {
+    navigate("/management");
   }
 
   async function insertNewDepartment() {
@@ -110,6 +117,15 @@ export default function NewDepartment() {
           width="600px"
           type="submit"
           disabled={loading ? true : false}
+        />
+        <Button
+          title="Cancelar"
+          isLoading={loading}
+          height="55px"
+          width="600px"
+          onClick={goBack}
+          disabled={loading ? true : false}
+          backgroundColor="var(--neutral-400)"
         />
         <p className={styles.error}>{errors}</p>
       </form>

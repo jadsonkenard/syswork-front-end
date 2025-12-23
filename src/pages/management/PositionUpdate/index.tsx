@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./PositionUpdate.module.css";
 import { useEffect, useState } from "react";
 import { getPositionById } from "../../../services/PositionService";
@@ -84,6 +84,12 @@ export default function PositionUpdate() {
     setLoading(false);
   }
 
+  const navigate = useNavigate();
+
+  function goBack() {
+    navigate("/positions/all");
+  }
+
   return (
     <div className={styles.container}>
       <h3 className={styles.title}>Atualizar função</h3>
@@ -118,6 +124,15 @@ export default function PositionUpdate() {
           width="600px"
           type="submit"
           disabled={loading ? true : false}
+        />
+        <Button
+          title="Cancelar"
+          isLoading={loading}
+          height="55px"
+          width="600px"
+          onClick={goBack}
+          disabled={loading ? true : false}
+          backgroundColor="var(--neutral-400)"
         />
         <p className={styles.error}>{errors}</p>
       </form>

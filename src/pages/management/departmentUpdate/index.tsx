@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Input, Label, Select } from "../../../components";
 import type { UpdateDepartment } from "../../../types/Department";
 import { useEffect, useState } from "react";
@@ -89,6 +89,12 @@ export default function DepartmentUpdate() {
     setLoading(false);
   }
 
+  const navigate = useNavigate();
+
+  function goBack() {
+    navigate("/department/all");
+  }
+
   return (
     <div className={styles.container}>
       <h3>Atualizar setor</h3>
@@ -130,6 +136,15 @@ export default function DepartmentUpdate() {
           width="600px"
           type="submit"
           disabled={loading ? true : false}
+        />
+        <Button
+          title="Cancelar"
+          isLoading={loading}
+          height="55px"
+          width="600px"
+          onClick={goBack}
+          disabled={loading ? true : false}
+          backgroundColor="var(--neutral-400)"
         />
         <p className={styles.error}>{errors}</p>
       </form>

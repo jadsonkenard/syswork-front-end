@@ -87,6 +87,10 @@ export default function TicketDetail() {
     });
   }
 
+  function goBack() {
+    navigate("/");
+  }
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Detalhes</h2>
@@ -129,6 +133,12 @@ export default function TicketDetail() {
                   />
                 </div>
               )}
+              <Button
+                title="Voltar"
+                isLoading={false}
+                backgroundColor="var(--neutral-400)"
+                onClick={goBack}
+              />
             </div>
             <Label iconName="id" title="ID" value={`#${item.id}`} />
             <Label

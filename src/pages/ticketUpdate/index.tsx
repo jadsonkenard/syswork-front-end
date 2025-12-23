@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getTicketById } from "../../services/ReportService";
 import { notify } from "../../services/notification";
 import { Button, Input, Label, LoadingOverlay, Select } from "../../components";
@@ -104,6 +104,12 @@ export default function TicketUpdate() {
     setLoading(false);
   }
 
+  const navigate = useNavigate();
+
+  function goBack() {
+    navigate("/");
+  }
+
   return (
     <div className={styles.container}>
       <h3>Editar chamado: {id}</h3>
@@ -193,6 +199,15 @@ export default function TicketUpdate() {
           width="600px"
           type="submit"
           disabled={loading ? true : false}
+        />
+        <Button
+          title="Cancelar"
+          isLoading={loading}
+          height="55px"
+          width="600px"
+          onClick={goBack}
+          disabled={loading ? true : false}
+          backgroundColor="var(--neutral-400)"
         />
         <p className={styles.error}>{errors}</p>
       </form>

@@ -38,7 +38,7 @@ export default function Sidebar() {
         />
         <SidebarOption
           iconName="reports"
-          title="Relatórios"
+          title="Chamados"
           onClick={() => navigate("/reports")}
         />
         <SidebarOption

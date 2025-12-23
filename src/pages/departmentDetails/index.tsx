@@ -67,6 +67,10 @@ export default function DepartmentDetail() {
     getDepartmentId();
   }, [id]);
 
+  function goBack() {
+    navigate("/department/all");
+  }
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Detalhes do setor</h2>
@@ -86,6 +90,12 @@ export default function DepartmentDetail() {
                 isLoading={false}
                 backgroundColor="var(--error-dark)"
                 onClick={() => setOpenConfirm(true)}
+              />
+              <Button
+                title="Voltar"
+                isLoading={false}
+                backgroundColor="var(--neutral-400)"
+                onClick={goBack}
               />
             </div>
             <Label iconName="id" title="ID" value={item.id} />

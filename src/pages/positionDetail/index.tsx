@@ -70,6 +70,10 @@ export default function PositionDetail() {
     getPositionId();
   }, [id]);
 
+  function goBack() {
+    navigate("/positions/all");
+  }
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Detalhes função</h2>
@@ -89,6 +93,12 @@ export default function PositionDetail() {
                 isLoading={false}
                 backgroundColor="var(--error-dark)"
                 onClick={() => setOpenConfirm(true)}
+              />
+              <Button
+                title="Voltar"
+                isLoading={false}
+                backgroundColor="var(--neutral-400)"
+                onClick={goBack}
               />
             </div>
             <Label iconName="id" title="ID" value={item.id} />
