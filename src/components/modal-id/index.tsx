@@ -1,4 +1,4 @@
-import styles from "./ModalId.module.css";
+import styles from "./Modal-id.module.css"
 import Button from "../button";
 import Input from "../input";
 import { useState } from "react";

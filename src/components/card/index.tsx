@@ -1,4 +1,4 @@
-import type { TicketDetailProps } from "../../types/ticketDetail";
+import type { TicketDetailProps } from "../../types/ticket";
 import styles from "./Card.module.css";
 
 interface ICard extends TicketDetailProps {

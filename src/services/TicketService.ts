@@ -1,6 +1,6 @@
 import { BASE_URL } from "../config/api";
 import { apiFetch } from "./apiFetch";
-import type { NewTicketForm } from "../types/newTicket";
+import type { NewTicketForm } from "../types/ticket";
 import type { TicketUpdate } from "../types/ticket";
 
 export async function NewTicketStore(newTicket: NewTicketForm) {

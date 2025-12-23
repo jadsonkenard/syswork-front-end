@@ -19,3 +19,21 @@ export interface TicketUpdate {
   requester_department_id: number;
   executor_department_id: number;
 }
+
+export type TicketDetailProps = {
+  id: number;
+  status: string;
+  title: string;
+  description: string;
+  requester_user: string;
+  requester_department: string;
+  executor_department: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type NewTicketForm = {
+  title: string;
+  description: string;
+  executor_department_id: number;
+};

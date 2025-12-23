@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Input, Label, LoadingOverlay } from "../../components";
 import { useAuth } from "../../hooks/useAuth";
 import styles from "./NewTicket.module.css";
-import type { NewTicketForm } from "../../types/newTicket";
+import type { NewTicketForm } from "../../types/ticket";
 import { NewTicketStore } from "../../services/TicketService";
 import { notify } from "../../services/notification";
 import { Select } from "../../components";
