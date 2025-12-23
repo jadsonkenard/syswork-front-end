@@ -26,6 +26,7 @@ export default function AllPositions() {
   useEffect(() => {
     async function load() {
       try {
+        setLoading(true)
         const response = await getAllPositions(page, limit);
         console.log(response);
         console.log(response.limit);

@@ -22,6 +22,7 @@ export default function AllDepartments() {
   useEffect(() => {
     async function load() {
       try {
+        setLoading(true);
         const response = await getAllDepartments();
         console.log(response);
         setDepartments(response);

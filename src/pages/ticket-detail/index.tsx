@@ -7,15 +7,18 @@ import { notify } from "../../services/notification";
 import { statusLabels, type ReportItem } from "../../types/ReportProps";
 import { ticketUpdateStatus } from "../../services/TicketService";
 import { formatDate } from "../../utils/formatDate";
-import { useAuth } from "../../hooks/useAuth";
+import type { User } from "../../types/User";
 
 export default function TicketDetail() {
   const { state } = useLocation();
   const [ticket, setTicket] = useState<ReportItem[]>([]);
   const [loading, setLoading] = useState(false);
+  const [user] = useState<User | null>(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
   const id = state?.id;
-  const { user } = useAuth();
 
   async function updateStatus(id: number, currentStatus: string) {
     const nextStatus = getNextStatus(currentStatus);
