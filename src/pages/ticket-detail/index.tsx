@@ -1,11 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./TicketDetail.module.css";
-import { Button, Label, LoadingOverlay } from "../../components";
+import { Button, ConfirmModal, Label, LoadingOverlay } from "../../components";
 import { getTicketById } from "../../services/ReportService";
 import { useEffect, useState } from "react";
 import { notify } from "../../services/notification";
 import { statusLabels, type ReportItem } from "../../types/ReportProps";
-import { ticketUpdateStatus } from "../../services/TicketService";
+import { ticketDelete, ticketUpdateStatus } from "../../services/TicketService";
 import { formatDate } from "../../utils/formatDate";
 import type { User } from "../../types/User";
 
@@ -13,6 +13,7 @@ export default function TicketDetail() {
   const { state } = useLocation();
   const [ticket, setTicket] = useState<ReportItem[]>([]);
   const [loading, setLoading] = useState(false);
+  const [openConfirm, setOpenConfirm] = useState(false);
   const [user] = useState<User | null>(() => {
     const storedUser = localStorage.getItem("user");
     return storedUser ? JSON.parse(storedUser) : null;
@@ -87,6 +88,26 @@ export default function TicketDetail() {
     });
   }
 
+  async function handleDelete(id: number) {
+    setLoading(true);
+    try {
+      await ticketDelete(id);
+      setLoading(false);
+      notify("success", "Chamado deletado com sucesso!.");
+      navigate("/");
+    } catch (error) {
+      if (typeof error === "string") {
+        notify("warning", error);
+        setLoading(false);
+        console.log(error);
+      } else if (error instanceof Error) {
+        notify("warning", error.message);
+        setLoading(false);
+        console.log(error.message);
+      }
+    }
+  }
+
   function goBack() {
     navigate("/");
   }
@@ -129,7 +150,7 @@ export default function TicketDetail() {
                     title="Deletar"
                     backgroundColor="var(--error-dark)"
                     isLoading={false}
-                    onClick={() => alert("Deletar chamado com id: " + item.id)}
+                    onClick={() => setOpenConfirm(true)}
                   />
                 </div>
               )}
@@ -183,6 +204,15 @@ export default function TicketDetail() {
               iconName="question"
               title="Descrição"
               value={item.description}
+            />
+            <ConfirmModal
+              open={openConfirm}
+              title="Excluir função"
+              description="Esta ação não poderá ser desfeita. Deseja continuar?"
+              confirmText="Excluir"
+              onConfirm={() => handleDelete(item.id)}
+              onCancel={() => setOpenConfirm(false)}
+              loading={loading}
             />
           </div>
         ))}
