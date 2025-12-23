@@ -15,6 +15,7 @@ import {
   TicketsByIdRequester,
   TicketsByIdExecutor,
   NewTicket,
+  TicketUpdate,
   AllPositions,
   PositionId,
   NewPosition,
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
           {
             element: <NewTicket />,
             path: "/newticket",
+          },
+          {
+            element: <TicketUpdate />,
+            path: "/ticketupdate",
           },
           {
             element: <TicketDetail />,

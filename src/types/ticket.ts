@@ -11,3 +11,11 @@ export interface Ticket {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface TicketUpdate {
+  title: string;
+  description: string;
+  status: string;
+  requester_department_id: number;
+  executor_department_id: number;
+}

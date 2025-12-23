@@ -21,6 +21,7 @@ import AllDepartments from "./management/allDepartments";
 import DepartmentDetail from "./departmentDetails";
 import NewDepartment from "./management/newDepartment";
 import DepartmentUpdate from "./management/departmentUpdate";
+import TicketUpdate from "./ticketUpdate";
 
 export {
   Home,
@@ -46,4 +47,5 @@ export {
   DepartmentDetail,
   NewDepartment,
   DepartmentUpdate,
+  TicketUpdate,
 };

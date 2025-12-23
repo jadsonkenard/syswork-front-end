@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./TicketDetail.module.css";
 import { Button, Label, LoadingOverlay } from "../../components";
 import { getTicketById } from "../../services/ReportService";
@@ -19,6 +19,7 @@ export default function TicketDetail() {
   });
 
   const id = state?.id;
+  const navigate = useNavigate();
 
   async function updateStatus(id: number, currentStatus: string) {
     const nextStatus = getNextStatus(currentStatus);
@@ -80,6 +81,12 @@ export default function TicketDetail() {
     getTicketId();
   }, [id]);
 
+  function handleTicketUpdate(id: number) {
+    navigate("/ticketupdate", {
+      state: { id },
+    });
+  }
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Detalhes</h2>
@@ -112,13 +119,13 @@ export default function TicketDetail() {
                     title="Editar"
                     backgroundColor="var(--neutral-600)"
                     isLoading={false}
-                    onClick={() => alert(`Editar chamado com id: ${item.id}`)}
+                    onClick={() => handleTicketUpdate(item.id)}
                   />
                   <Button
                     title="Deletar"
                     backgroundColor="var(--error-dark)"
                     isLoading={false}
-                    onClick={() => alert(`Deletar chamado com id: ${item.id}`)}
+                    onClick={() => alert("Deletar chamado com id: " + item.id)}
                   />
                 </div>
               )}

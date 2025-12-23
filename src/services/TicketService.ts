@@ -1,6 +1,7 @@
 import { BASE_URL } from "../config/api";
 import { apiFetch } from "./apiFetch";
 import type { NewTicketForm } from "../types/newTicket";
+import type { TicketUpdate } from "../types/ticket";
 
 export async function NewTicketStore(newTicket: NewTicketForm) {
   try {
@@ -39,6 +40,35 @@ export async function ticketUpdateStatus(id: number, status: string) {
       },
       credentials: "include",
       body: JSON.stringify({ status }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        errorData.error || errorData.message || "Erro desconhecido"
+      );
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof TypeError && error.message.includes("fetch")) {
+      throw new Error("Servidor indisponível. Tente novamente mais tarde.");
+    }
+    console.error("Erro inesperado. ", error);
+    throw error;
+  }
+}
+
+export async function newTicketUpdate(id: number, newDataTicket: TicketUpdate) {
+  try {
+    const response = await apiFetch(`${BASE_URL}/ticket/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(newDataTicket),
     });
 
     if (!response.ok) {
