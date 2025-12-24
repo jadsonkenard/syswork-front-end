@@ -31,14 +31,12 @@ body {
   width: 200px;
   height: 120px;
 
-  /* A chave para manter o tamanho fixo e gerenciar o excesso */
   overflow: auto;
   border-radius: 2px;
 }
 
 .box-item:hover {
   background-color: var(--neutral-200);
-  /* Mover ligeiramente para cima e aumentar um pouco */
   transform: translateY(-10px) scale(1.05);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }

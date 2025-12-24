@@ -1,13 +1,13 @@
 import { BASE_URL } from "../config/api";
-import type { User } from "../types/User";
+import type { IUser } from "../types/AuthUser"; //
 import { apiFetch } from "./apiFetch";
 
 export interface LoginResponse {
-  user: User;
+  user: IUser;
 }
 
 export function AuthService() {
-  async function login(username: string, password: string): Promise<User> {
+  async function login(username: string, password: string): Promise<IUser> {
     const response = await apiFetch(`${BASE_URL}/api/auth/login`, {
       method: "POST",
       credentials: "include", // envia e recebe cookies
@@ -40,7 +40,7 @@ export function AuthService() {
     });
   }
 
-  async function getProfile(): Promise<User | null> {
+  async function getProfile(): Promise<IUser | null> {
     const response = await apiFetch(`${BASE_URL}/api/auth/me`, {
       method: "GET",
       credentials: "include",
@@ -48,7 +48,7 @@ export function AuthService() {
 
     if (!response.ok) return null;
 
-    const data: { user: User } = await response.json();
+    const data: { user: IUser } = await response.json();
     return data.user;
   }
 

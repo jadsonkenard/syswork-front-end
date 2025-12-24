@@ -1,5 +1,5 @@
 import { type Department } from "./Department";
-import { type User } from "./User";
+import { type User } from "./AuthUser";
 
 export type TicketStatus = "open" | "in progress" | "done";
 

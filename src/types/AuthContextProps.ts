@@ -1,4 +1,4 @@
-import type { User } from "./User";
+import type { User } from "./AuthUser";
 
 export interface AuthContextProps {
   user: User | null;

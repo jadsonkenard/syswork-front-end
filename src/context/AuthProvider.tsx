@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
 import { AuthService } from "../services/AuthService";
-import type { User } from "../types/User";
+import type { IUser } from "../types/AuthUser"; //
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const authService = AuthService();
 
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<IUser | null>(null);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {

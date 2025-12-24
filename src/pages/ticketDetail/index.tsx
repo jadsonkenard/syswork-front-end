@@ -7,14 +7,14 @@ import { notify } from "../../services/notification";
 import { statusLabels, type ReportItem } from "../../types/ReportProps";
 import { ticketDelete, ticketUpdateStatus } from "../../services/TicketService";
 import { formatDate } from "../../utils/formatDate";
-import type { User } from "../../types/User";
+import type { IUser } from "../../types/AuthUser"; //
 
 export default function TicketDetail() {
   const { state } = useLocation();
   const [ticket, setTicket] = useState<ReportItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [openConfirm, setOpenConfirm] = useState(false);
-  const [user] = useState<User | null>(() => {
+  const [user] = useState<IUser | null>(() => {
     const storedUser = localStorage.getItem("user");
     return storedUser ? JSON.parse(storedUser) : null;
   });

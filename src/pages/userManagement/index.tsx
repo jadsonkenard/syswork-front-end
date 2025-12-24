@@ -13,11 +13,22 @@ export default function UserManagement() {
           onClick={() => navigate("/user/listusers")}
         >
           <DynamicIcon
-            iconName="report1"
+            iconName="userRoundSearch"
             color="var(--neutral-500)"
             size={80}
           />
           <p className={styles["box-text"]}>Buscar usuários</p>
+        </div>
+        <div
+          className={styles["box-item"]}
+          onClick={() => navigate("/user/listusers")}
+        >
+          <DynamicIcon
+            iconName="userPlus"
+            color="var(--neutral-500)"
+            size={80}
+          />
+          <p className={styles["box-text"]}>Novo usuário</p>
         </div>
       </section>
     </div>
