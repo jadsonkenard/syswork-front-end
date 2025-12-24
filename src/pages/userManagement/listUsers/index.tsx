@@ -16,6 +16,7 @@ export default function ListUsers() {
   useEffect(() => {
     async function load() {
       try {
+        setLoading(true);
         const response = await getAllUsers(page, limit);
         console.log(response);
         setUsers(response.data);

@@ -12,7 +12,6 @@ import { newPositionUpdate } from "../../../services/PositionService";
 export default function PositionUpdate() {
   const [form, setForm] = useState<UpdatePosition>({
     name: "",
-    salary: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -26,8 +25,7 @@ export default function PositionUpdate() {
         const response = await getPositionById(id);
         console.log(response);
         setForm({
-          name: response.name ?? "",
-          salary: response.salary ?? "",
+          name: response.name ?? ""
         });
         setLoading(false);
         notify("success", "Sucesso.");
@@ -65,7 +63,7 @@ export default function PositionUpdate() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     insertPositionUpdate();
-    console.log(form.name, form.salary);
+    console.log(form.name);
   }
 
   async function insertPositionUpdate() {
@@ -74,7 +72,7 @@ export default function PositionUpdate() {
       const response = await newPositionUpdate(id, form);
       console.log(response);
       notify("success", "Sucesso.");
-      setForm({ name: "", salary: "" });
+      setForm({ name: ""});
       setErrors("");
       setLoading(false);
     } catch (error: any) {
@@ -101,17 +99,6 @@ export default function PositionUpdate() {
             iconName="info"
             placeholder="nome"
             value={form.name}
-            onChange={handleChange}
-            width="600px"
-            height="55px"
-          />
-        </div>
-        <div className={styles.field}>
-          <Input
-            name="salary"
-            iconName="money"
-            placeholder="Salário"
-            value={form.salary}
             onChange={handleChange}
             width="600px"
             height="55px"

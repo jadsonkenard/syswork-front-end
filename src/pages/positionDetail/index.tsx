@@ -9,7 +9,6 @@ import {
 import { notify } from "../../services/notification";
 import type { Position } from "../../types/Position";
 import { formatDate } from "../../utils/formatDate";
-import { formatBRL } from "../../utils/formatBRL";
 
 export default function PositionDetail() {
   const [loading, setLoading] = useState(false);
@@ -103,11 +102,6 @@ export default function PositionDetail() {
             </div>
             <Label iconName="id" title="ID" value={item.id} />
             <Label iconName="info" title="Nome" value={item.name} />
-            <Label
-              iconName="money"
-              title="Salário"
-              value={formatBRL(item.salary)}
-            />
             <Label
               iconName="time1"
               title="Criado em"

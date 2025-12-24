@@ -5,7 +5,6 @@ import styles from "./AllPositions.module.css";
 import type { Position } from "../../../types/Position";
 import { notify } from "../../../services/notification";
 import { getAllPositions } from "../../../services/PositionService";
-import { formatBRL } from "../../../utils/formatBRL";
 import { useNavigate } from "react-router-dom";
 
 export default function AllPositions() {
@@ -64,7 +63,6 @@ export default function AllPositions() {
           <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>Salário</th>
             <th>Criado em</th>
             <th>Atualizado em</th>
           </tr>
@@ -75,7 +73,6 @@ export default function AllPositions() {
             <tr key={item.id} onClick={() => handlePosition(item.id)}>
               <td>{item.id}</td>
               <td>{item.name}</td>
-              <td>{formatBRL(item.salary)}</td>
               <td>{formatDate(item.createdAt)}</td>
               <td>{formatDate(item.updatedAt)}</td>
             </tr>

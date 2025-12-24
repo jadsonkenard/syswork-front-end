@@ -13,7 +13,6 @@ export default function NewPosition() {
   const [errors, setErrors] = useState<string>("");
   const [form, setForm] = useState<NewPosition>({
     name: "",
-    salary: "",
   });
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -41,13 +40,7 @@ export default function NewPosition() {
       setLoading(false);
       return;
     }
-    if (!form.salary.trim()) {
-      setErrors("Informe o salário");
-      setLoading(false);
-      return;
-    }
-
-    console.log(form.name, form.salary);
+    console.log(form.name);
     insertNewPosition();
     setLoading(true);
   }
@@ -57,7 +50,7 @@ export default function NewPosition() {
       const response = await newPositionStore(form);
       console.log(response);
       notify("success", "Sucesso.");
-      setForm({ name: "", salary: "" });
+      setForm({ name: "" });
       setErrors("");
     } catch (error: any) {
       setErrors(error.message || "Erro inesperado");
@@ -83,17 +76,6 @@ export default function NewPosition() {
             iconName="info"
             placeholder="nome"
             value={form.name}
-            onChange={handleChange}
-            width="600px"
-            height="55px"
-          />
-        </div>
-        <div className={styles.field}>
-          <Input
-            name="salary"
-            iconName="money"
-            placeholder="Salário"
-            value={form.salary}
             onChange={handleChange}
             width="600px"
             height="55px"
