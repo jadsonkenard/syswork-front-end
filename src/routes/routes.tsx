@@ -26,6 +26,7 @@ import {
   NewDepartment,
   DepartmentUpdate,
   ListUsers,
+  NewUser,
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
@@ -137,6 +138,10 @@ export const router = createBrowserRouter([
           {
             element: <ListUsers />,
             path: "/user/listusers",
+          },
+          {
+            element: <NewUser />,
+            path: "/user/newuser",
           },
         ],
       },

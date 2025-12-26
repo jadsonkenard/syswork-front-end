@@ -23,6 +23,7 @@ import NewDepartment from "./management/newDepartment";
 import DepartmentUpdate from "./management/departmentUpdate";
 import TicketUpdate from "./ticketUpdate";
 import ListUsers from "./userManagement/listUsers";
+import NewUser from "./userManagement/newUser";
 
 export {
   Home,
@@ -50,4 +51,5 @@ export {
   DepartmentUpdate,
   TicketUpdate,
   ListUsers,
+  NewUser,
 };

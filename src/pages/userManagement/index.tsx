@@ -21,7 +21,7 @@ export default function UserManagement() {
         </div>
         <div
           className={styles["box-item"]}
-          onClick={() => navigate("/user/listusers")}
+          onClick={() => navigate("/user/newuser")}
         >
           <DynamicIcon
             iconName="userPlus"
