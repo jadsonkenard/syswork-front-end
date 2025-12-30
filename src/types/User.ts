@@ -36,3 +36,7 @@ export interface NewUser {
   department_id: number;
   status: UserStatus;
 }
+
+export interface UpdatePass {
+  password: string;
+}
