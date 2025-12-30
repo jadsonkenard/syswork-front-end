@@ -5,6 +5,7 @@ import { getAllUsers } from "../../../services/UserService";
 import { notify } from "../../../services/notification";
 import type { User } from "../../../types/User";
 import { Button, LoadingOverlay } from "../../../components";
+import { useNavigate } from "react-router-dom";
 
 export default function ListUsers() {
   const [users, setUsers] = useState<User[]>([]);
@@ -12,6 +13,14 @@ export default function ListUsers() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);
   const [totalPages, setTotalPages] = useState(1);
+
+  const navigate = useNavigate();
+
+  function handleUser(id: number) {
+    navigate("/user/userdatail", {
+      state: { id },
+    });
+  }
 
   useEffect(() => {
     async function load() {
@@ -68,7 +77,7 @@ export default function ListUsers() {
 
         <tbody>
           {users.map((item) => (
-            <tr key={item.id}>
+            <tr key={item.id} onClick={() => handleUser(item.id)}>
               <td>{item.id}</td>
               <td>{item.full_name}</td>
               <td>{item.cpf}</td>
