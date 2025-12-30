@@ -78,7 +78,11 @@ export default function NewUser() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-
+    if (!form.full_name) {
+      setErrors("Insira o nome completo");
+      setLoading(false);
+      return;
+    }
     insertNewUser();
     console.log("");
   }
@@ -214,23 +218,6 @@ export default function NewUser() {
           options={roleOptions}
         />
         <Select
-          name="department"
-          value={form.department_id}
-          title="Setor"
-          width="600px"
-          height="55px"
-          onChange={(e) =>
-            setForm((prev) => ({
-              ...prev,
-              department_id: Number(e.target.value),
-            }))
-          }
-          options={loadDepartment.map((d: any) => ({
-            value: d.id,
-            label: d.name,
-          }))}
-        />
-        <Select
           name="position"
           value={form.position_id}
           title="Função"
@@ -243,6 +230,23 @@ export default function NewUser() {
             }))
           }
           options={loadPosition.map((d: any) => ({
+            value: d.id,
+            label: d.name,
+          }))}
+        />
+        <Select
+          name="department"
+          value={form.department_id}
+          title="Setor"
+          width="600px"
+          height="55px"
+          onChange={(e) =>
+            setForm((prev) => ({
+              ...prev,
+              department_id: Number(e.target.value),
+            }))
+          }
+          options={loadDepartment.map((d: any) => ({
             value: d.id,
             label: d.name,
           }))}

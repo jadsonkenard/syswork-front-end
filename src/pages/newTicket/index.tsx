@@ -8,6 +8,7 @@ import { NewTicketStore } from "../../services/TicketService";
 import { notify } from "../../services/notification";
 import { Select } from "../../components";
 import { getAllDepartments } from "../../services/DepartmentService";
+import { isRequired } from "../../utils/isRequired";
 
 export default function NewTicket() {
   const [loading, setLoading] = useState(false);
@@ -51,8 +52,21 @@ export default function NewTicket() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    if (!form.title.trim()) {
-      setErrors("Título do chamado é obrigatório");
+
+    if (!isRequired(form.title)) {
+      setErrors("O título do chamado é obrigatório");
+      setLoading(false);
+      return;
+    }
+
+    if (!isRequired(form.description)) {
+      setErrors("A descrição do chamado é obrigatório");
+      setLoading(false);
+      return;
+    }
+
+    if (form.executor_department_id === 0 || null) {
+      setErrors("Selecione um setor executante");
       setLoading(false);
       return;
     }
@@ -136,6 +150,7 @@ export default function NewTicket() {
           type="submit"
           disabled={loading ? true : false}
         />
+
         <p className={styles.error}>{errors}</p>
       </form>
     </div>

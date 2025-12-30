@@ -1,11 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button, Label, LoadingOverlay } from "../../components";
+import { Button, Label, LoadingOverlay } from "../../../components";
 import { useEffect, useState } from "react";
 import styles from "./UserDetail.module.css";
-import { getUserById } from "../../services/UserService";
-import { notify } from "../../services/notification";
-import type { User } from "../../types/User";
-import { formatDate } from "../../utils/formatDate";
+import { getUserById } from "../../../services/UserService";
+import { notify } from "../../../services/notification";
+import type { User } from "../../../types/User";
+import { formatDate } from "../../../utils/formatDate";
 
 export default function UserDatail() {
   const [loading, setLoading] = useState(false);
@@ -39,9 +39,22 @@ export default function UserDatail() {
     load();
   }, [id]);
 
+  function handleUserUpdate(id: number) {
+    navigate("/user/userupdate", {
+      state: { id },
+    });
+  }
+
+  function handleUserUpdatePassword(id: number) {
+    navigate("/user/userupdatepass", {
+      state: { id },
+    });
+  }
+
   function goBack() {
     navigate("/user/listusers");
   }
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Detalhes usuário</h2>
@@ -50,6 +63,18 @@ export default function UserDatail() {
         {(user ?? []).map((item) => (
           <div key={item.id} className={styles.item}>
             <div className={styles.buttons}>
+              <Button
+                title="Atualizar"
+                isLoading={false}
+                backgroundColor="var(--neutral-600)"
+                onClick={() => handleUserUpdate(item.id)}
+              />
+              <Button
+                title="Alterar senha"
+                isLoading={false}
+                backgroundColor="var(--neutral-600)"
+                onClick={() => handleUserUpdatePassword(item.id)}
+              />
               <Button
                 title="Voltar"
                 isLoading={false}

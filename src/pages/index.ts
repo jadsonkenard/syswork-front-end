@@ -24,8 +24,9 @@ import DepartmentUpdate from "./management/departmentUpdate";
 import TicketUpdate from "./ticketUpdate";
 import ListUsers from "./userManagement/listUsers";
 import NewUser from "./userManagement/newUser";
-import UserUpdate from "./userUpdate";
-import UserDatail from "./userDetail";
+import UserUpdate from "./userManagement/userUpdate";
+import UserDatail from "./userManagement/userDetail";
+import UpdatePassword from "./userManagement/updatePassword";
 
 export {
   Home,
@@ -56,4 +57,5 @@ export {
   NewUser,
   UserUpdate,
   UserDatail,
+  UpdatePassword,
 };

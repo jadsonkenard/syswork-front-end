@@ -28,7 +28,8 @@ import {
   ListUsers,
   NewUser,
   UserUpdate,
-  UserDatail
+  UserDatail,
+  UpdatePassword
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
@@ -152,6 +153,10 @@ export const router = createBrowserRouter([
           {
             element: <UserDatail />,
             path: "/user/userdatail",
+          },
+          {
+            element: <UpdatePassword />,
+            path: "/user/userupdatepass",
           },
         ],
       },
