@@ -57,3 +57,28 @@ export async function newUserStore(newUser: NewUser) {
     throw error;
   }
 }
+
+export async function getUserById(id: number) {
+  try {
+    const response = await apiFetch(`${BASE_URL}/users/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof TypeError && error.message.includes("fetch")) {
+      throw new Error("Servidor indisponível. Tente novamente mais tarde.");
+    }
+    console.error("Erro inesperado. ", error);
+    throw error;
+  }
+}

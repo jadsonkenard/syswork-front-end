@@ -7,6 +7,8 @@ export const iconMap: Record<string, Icons.LucideIcon> = {
   userCheck: Icons.UserCheck,
   userRoundSearch: Icons.UserRoundSearch,
   userPlus: Icons.UserPlus,
+  userStar: Icons.UserStar,
+  mail: Icons.Mail,
   lock: Icons.KeyRound,
   report1: Icons.ClipboardMinus,
   report2: Icons.BookCheck,
@@ -33,4 +35,7 @@ export const iconMap: Record<string, Icons.LucideIcon> = {
   warehouse: Icons.Warehouse,
   filePlus: Icons.FilePlus,
   housePlus: Icons.HousePlus,
+  number: Icons.ListOrdered,
+  phoneCall: Icons.PhoneCall,
+  badgeCheck: Icons.BadgeCheck
 };
