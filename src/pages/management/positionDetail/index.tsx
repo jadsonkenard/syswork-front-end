@@ -1,16 +1,23 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button, Label, LoadingOverlay, ConfirmModal } from "../../components";
-import type { Department } from "../../types/Department";
+import styles from "./PositionDetail.module.css";
+import {
+  Button,
+  Label,
+  LoadingOverlay,
+  ConfirmModal,
+} from "../../../components";
 import { useEffect, useState } from "react";
-import styles from "./DepartmentDetails.module.css";
-import { formatDate } from "../../utils/formatDate";
-import { getDepartmentById } from "../../services/DepartmentService";
-import { notify } from "../../services/notification";
-import { deleteDepartmentById } from "../../services/DepartmentService";
+import {
+  getPositionById,
+  deletePositionById,
+} from "../../../services/PositionService";
+import { notify } from "../../../services/notification";
+import type { Position } from "../../../types/Position";
+import { formatDate } from "../../../utils/formatDate";
 
-export default function DepartmentDetail() {
-  const [department, setDepartment] = useState<Department[]>([]);
+export default function PositionDetail() {
   const [loading, setLoading] = useState(false);
+  const [position, setPosition] = useState<Position[]>([]);
   const [openConfirm, setOpenConfirm] = useState(false);
 
   const navigate = useNavigate();
@@ -20,10 +27,10 @@ export default function DepartmentDetail() {
   async function handleDelete(id: number) {
     setLoading(true);
     try {
-      await deleteDepartmentById(id);
+      await deletePositionById(id);
       setLoading(false);
       notify("success", "Função deletada com sucesso!.");
-      navigate("/department/all");
+      navigate("/positions/all");
     } catch (error) {
       if (typeof error === "string") {
         notify("warning", error);
@@ -37,19 +44,19 @@ export default function DepartmentDetail() {
     }
   }
 
-  function handleDepartment(id: number) {
-    navigate("/department/departmentupdate", {
+  function handlePosition(id: number) {
+    navigate("/position/positionupdate", {
       state: { id },
     });
   }
 
   useEffect(() => {
-    async function getDepartmentId() {
+    async function getPositionId() {
       try {
         setLoading(true);
-        const response = await getDepartmentById(id);
+        const response = await getPositionById(id);
         console.log(response);
-        setDepartment([response]);
+        setPosition([response]);
         setLoading(false);
         notify("success", "Sucesso.");
       } catch (error) {
@@ -64,26 +71,26 @@ export default function DepartmentDetail() {
         }
       }
     }
-    getDepartmentId();
+    getPositionId();
   }, [id]);
 
   function goBack() {
-    navigate("/department/all");
+    navigate("/positions/all");
   }
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Detalhes do setor</h2>
+      <h2 className={styles.title}>Detalhes função</h2>
       <LoadingOverlay isLoading={loading} />
       <nav className={styles.nav}>
-        {(department ?? []).map((item) => (
+        {(position ?? []).map((item) => (
           <div key={item.id} className={styles.item}>
             <div className={styles.buttons}>
               <Button
                 title="Atualizar"
                 isLoading={false}
                 backgroundColor="var(--neutral-600)"
-                onClick={() => handleDepartment(item.id)}
+                onClick={() => handlePosition(item.id)}
               />
               <Button
                 title="Deletar"
