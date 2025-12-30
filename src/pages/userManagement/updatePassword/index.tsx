@@ -55,12 +55,14 @@ export default function UpdatePassword() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     setLoading(true);
     if (!form.password.trim()) {
       setErrors("O senha não pode ser vazia.");
       setLoading(false);
       return;
     }
+
     insertNewPassword();
     console.log(form.password);
   }
@@ -111,6 +113,7 @@ export default function UpdatePassword() {
             name="password"
             iconName="lock"
             placeholder="Nova senha"
+            type="password"
             value={form.password}
             onChange={handleChange}
             width="600px"
@@ -127,7 +130,6 @@ export default function UpdatePassword() {
         />
         <Button
           title="Cancelar"
-          isLoading={loading}
           height="55px"
           width="600px"
           onClick={goBack}

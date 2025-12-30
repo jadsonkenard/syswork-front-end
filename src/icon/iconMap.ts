@@ -8,6 +8,7 @@ export const iconMap: Record<string, Icons.LucideIcon> = {
   userRoundSearch: Icons.UserRoundSearch,
   userPlus: Icons.UserPlus,
   userStar: Icons.UserStar,
+  userCog: Icons.UserCog,
   mail: Icons.Mail,
   lock: Icons.KeyRound,
   report1: Icons.ClipboardMinus,

@@ -139,7 +139,6 @@ export default function DepartmentUpdate() {
         />
         <Button
           title="Cancelar"
-          isLoading={loading}
           height="55px"
           width="600px"
           onClick={goBack}

@@ -4,7 +4,7 @@ import { Dots } from "react-activity";
 type ButtonProps = {
   title: string;
   disabled?: boolean;
-  isLoading: boolean;
+  isLoading?: boolean;
   onClick?: () => void;
   width?: string;
   height?: string;

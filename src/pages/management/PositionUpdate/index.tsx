@@ -114,7 +114,6 @@ export default function PositionUpdate() {
         />
         <Button
           title="Cancelar"
-          isLoading={loading}
           height="55px"
           width="600px"
           onClick={goBack}

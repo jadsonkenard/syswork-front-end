@@ -137,7 +137,7 @@ export default function NewUser() {
         <div className={styles.field}>
           <Input
             name="cpf"
-            iconName="info"
+            iconName="number"
             placeholder="CPF"
             value={form.cpf}
             onChange={handleChange}
@@ -148,7 +148,7 @@ export default function NewUser() {
         <div className={styles.field}>
           <Input
             name="phone"
-            iconName="info"
+            iconName="phoneCall"
             placeholder="Telefone"
             value={form.phone}
             onChange={handleChange}
@@ -159,7 +159,7 @@ export default function NewUser() {
         <div className={styles.field}>
           <Input
             name="email"
-            iconName="info"
+            iconName="mail"
             placeholder="Email"
             value={form.email}
             onChange={handleChange}
@@ -170,7 +170,7 @@ export default function NewUser() {
         <div className={styles.field}>
           <Input
             name="username"
-            iconName="info"
+            iconName="userStar"
             placeholder="Nome de usuário"
             value={form.username}
             onChange={handleChange}
@@ -181,7 +181,8 @@ export default function NewUser() {
         <div className={styles.field}>
           <Input
             name="password"
-            iconName="info"
+            iconName="lock"
+            type="password"
             placeholder="Senha"
             value={form.password}
             onChange={handleChange}

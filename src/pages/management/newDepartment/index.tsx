@@ -120,7 +120,6 @@ export default function NewDepartment() {
         />
         <Button
           title="Cancelar"
-          isLoading={loading}
           height="55px"
           width="600px"
           onClick={goBack}

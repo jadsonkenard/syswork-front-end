@@ -112,7 +112,7 @@ export default function TicketUpdate() {
 
   return (
     <div className={styles.container}>
-      <h3>Editar chamado: {id}</h3>
+      <h3>Editar chamado</h3>
       <LoadingOverlay isLoading={loading} />
       <form onSubmit={handleSubmit} className={styles.form}>
         <Label iconName="id" title="ID" value={id} />
@@ -202,7 +202,6 @@ export default function TicketUpdate() {
         />
         <Button
           title="Cancelar"
-          isLoading={loading}
           height="55px"
           width="600px"
           onClick={goBack}

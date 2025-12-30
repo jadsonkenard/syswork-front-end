@@ -24,6 +24,10 @@ export default function Reports() {
   }
 
   function handleConfirm(id: string, route: string) {
+    if (!id || !route) {
+      setIsOpen(true);
+      return;
+    }
     navigate(route, { state: { id } });
     setIsOpen(false);
   }
