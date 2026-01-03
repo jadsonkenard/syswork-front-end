@@ -40,3 +40,13 @@ export interface NewUser {
 export interface UpdatePass {
   password: string;
 }
+
+export interface UpdateUser {
+  full_name: string;
+  phone: string;
+  email: string;
+  role: string;
+  position_id: number;
+  department_id: number;
+  status: string;
+}

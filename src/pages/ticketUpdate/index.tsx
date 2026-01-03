@@ -73,13 +73,7 @@ export default function TicketUpdate() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    // if (!form.name.trim()) {
-    //   setErrors("O nome do setor não poder ser vazio.");
-    //   setLoading(false);
-    //   return;
-    // }
     insertTicketUpdate();
-    console.log(form.title, form.description);
   }
 
   async function insertTicketUpdate() {

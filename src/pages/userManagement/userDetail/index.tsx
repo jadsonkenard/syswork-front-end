@@ -83,7 +83,7 @@ export default function UserDatail() {
               />
             </div>
             <Label iconName="id" title="ID" value={item.id} />
-            <Label iconName="info" title="Nome" value={item.full_name} />
+            <Label iconName="info" title="Nome completo" value={item.full_name} />
             <Label iconName="number" title="CPF" value={item.cpf} />
             <Label iconName="phoneCall" title="Telefone" value={item.phone} />
             <Label iconName="mail" title="Email" value={item.email} />
