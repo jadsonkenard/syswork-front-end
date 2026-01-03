@@ -156,6 +156,13 @@ export default function UserUpdate() {
                 value={item.username}
               />
             </div>
+            <div>
+              <Label
+                iconName="number"
+                title="CPF"
+                value={item.cpf}
+              />
+            </div>
           </>
         ))}
 
